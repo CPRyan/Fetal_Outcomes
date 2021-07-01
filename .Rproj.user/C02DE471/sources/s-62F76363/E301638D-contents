@@ -1,0 +1,222 @@
+---
+title: "NIH Progress"
+author: "Calen P. Ryan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+Created February 22nd, 2021.
+
+```{r, warnings = FALSE, messages = FALSE}
+library(tidyverse)
+library(sjlabelled)
+library(readr)
+```
+
+
+Load the NSF data - probably easier to work backwards
+```{r}
+nsf <-read_csv(here::here("Data/Survey_Data/NSF", "full_nsf_w_covariates.csv")) %>% as_character(uncchdid)
+
+nsf  <-nsf %>% 
+  select(-c(basebrgy.x, basewman.x, basehhno.x)) %>% # Remove...
+ # rename_at(vars(everything()), ~ sub(".x$", "", .x)) # or rename those variables with .x suffix
+  rename_at(vars(matches(".x")), ~str_remove(., ".x"))
+
+
+names(nsf)
+```
+
+
+```{r}
+nsf %>% 
+  select(age_nsf_sample, bmi, smoke, SES3, pregord_all, m_preg_all, iccs, wheredel) %>% 
+  as.data.frame() %>%
+  summarytools::dfSummary()
+  # stargazer::stargazer(., summary = TRUE, summary.stat = c("min", "max", "median", "mean", "sd", "n"), out = here::here("Output/Figures/NSF_Progress.html"), type = "html", digits = 2)
+
+
+```
+
+```{r}
+nsf %>% 
+  distinct(uncchdid)
+
+nsf %>% 
+  group_by(sample_type) %>% 
+  summarize(n())
+
+```
+
+```{r}
+nsf_age <-read_csv(here::here("Data/Clock_Data/NSF/yourprocessingresult", "cebu_long_w_baddetP_kept_in.output.csv"))
+
+names(nsf_age)
+```
+
+```{r}
+library(ggpubr)
+library(ggExtra)
+ggscatter(nsf_age %>% filter(DNAmAge <50), x = "Age", y = "DNAmAge",
+                   add = "reg.line",
+                   conf.int = TRUE,
+                   add.params = list(color = "blue",
+                                     fill = "lightgray"), 
+            color = "firebrick3", 
+            alpha = 0.7)+
+   stat_cor(method = "pearson", label.x = 25, label.y = 40)
+
+
+
+
+nsf_age %>% 
+  filter(DNAmAge < 50) %>% 
+  select(Sample_Name, Age, DNAmAge, DNAmAgeHannum, DNAmGrimAge, DNAmAgeSkinBloodClock) %>% 
+  gather(key = Clock_Type, value = Epigenetic_Age, -c(Sample_Name, Age)) %>% 
+  ggscatter(., x = "Age", y = "Epigenetic_Age",
+                   add = "reg.line",
+                   conf.int = TRUE,
+                   add.params = list(color = "blue",
+                                     fill = "lightgray"), 
+            facet.by = "Clock_Type",
+            color = "Clock_Type",
+            palette = "aaas", 
+            alpha = 0.6)+
+  stat_cor(method = "pearson", label.x = 25, label.y = 53)+
+  ylim(c(15, 55))+
+  theme(legend.position = "none")
+
+```
+
+```{r}
+nsf_age %>% 
+  filter(DNAmAge < 50) %>% 
+  select(Sample_Name, Age, CD4T, CD8T, Gran, NK, Bcell, Mono) %>% 
+  gather(key = Cell_Type, value = Cell_Prop, -c(Sample_Name, Age)) %>% 
+  ggscatter(., x = "Age", y = "Cell_Prop",
+          add = "reg.line",
+          conf.int = TRUE,
+          add.params = list(color = "blue",
+                            fill = "lightgray"),
+          facet.by = "Cell_Type",
+          color = "Cell_Type",
+          palette = "aaas", 
+          alpha = 0.6)+
+  stat_cor(method = "pearson", label.x = 25, label.y.npc = c(0.95))+
+  facet_wrap(. ~ Cell_Type, scales = "free_y")+
+  geom_blank(aes(x=Age, y=Cell_Prop*1.2, label=Cell_Prop))+
+  theme(legend.position = "none")
+
+
+
+```
+
+```{r}
+nsf_merged <-left_join(nsf, nsf_age, by=c("Sample_Group" = "Sample_Name"))
+
+
+```
+
+```{r}
+nsf_merged %>% 
+  filter(DNAmAge < 50) %>% 
+  select(Sample_Group, DNAmAge, bmi, m_preg_all) %>% 
+  gather(key = pheno_type, value = pheno_value, -c(Sample_Group, DNAmAge)) %>% 
+  ggscatter(., x = "DNAmAge", y = "pheno_value",
+                   add = "reg.line",
+                   conf.int = TRUE,
+                   add.params = list(color = "blue",
+                                     fill = "lightgray"), 
+            facet.by = "pheno_type",
+            color = "pheno_type",
+            palette = "aaas", 
+            alpha = 0.6, 
+            scales = "free")+
+  stat_cor(method = "pearson")
+```
+
+```{r}
+nsf_merged %>% 
+  filter(DNAmAge < 50) %>% 
+  select(Sample_Group, DNAmAge, bmi, m_preg_all) %>% 
+  gather(key = pheno_type, value = pheno_value, -c(Sample_Group, DNAmAge)) %>% 
+  ggscatter(., x = "DNAmAge", y = "pheno_value",
+                   add = "reg.line",
+                   conf.int = TRUE,
+                   add.params = list(color = "blue",
+                                     fill = "lightgray"), 
+            facet.by = "pheno_type",
+            color = "pheno_type",
+            palette = "aaas", 
+            alpha = 0.6, 
+            scales = "free")+
+  stat_cor(method = "pearson")
+```
+
+```{r}
+nsf_merged %>% 
+  filter(DNAmAge < 50) %>% 
+  select(Sample_Group, m_preg_all, CD4T, CD8T, Gran, NK, Bcell, Mono) %>% 
+  gather(key = Cell_Type, value = Cell_Prop, -c(Sample_Group, m_preg_all)) %>% 
+  ggscatter(., x = "m_preg_all", y = "Cell_Prop",
+          add = "reg.line",
+          conf.int = TRUE,
+          add.params = list(color = "blue",
+                            fill = "lightgray"),
+          facet.by = "Cell_Type",
+          color = "Cell_Type",
+          palette = "aaas", 
+          alpha = 0.6)+
+  stat_cor(method = "pearson", label.x = 2, label.y.npc = c(0.95))+
+  facet_wrap(. ~ Cell_Type, scales = "free_y")+
+  geom_blank(aes(x=m_preg_all, y=Cell_Prop*1.2, label=Cell_Prop))+
+  theme(legend.position = "none")
+```
+
+```{r}
+nsf_merged %>% select(bmi) %>% summary()
+
+nsf_merged %>% 
+  filter(DNAmAge < 50) %>% 
+  select(Sample_Group, bmi, CD4T, CD8T, Gran, NK, Bcell, Mono) %>% 
+#  mutate(bmi_category=cut(bmi, breaks=c(-Inf, 22.43, 27.08, Inf), labels=c("low","middle","high"))) %>% 
+  gather(key = Cell_Type, value = Cell_Prop, -c(Sample_Group, bmi)) %>%
+  mutate(Cell_Prop = round(Cell_Prop, 4)) %>% 
+  ggscatter(., x = "bmi", y = "Cell_Prop",
+          add = "reg.line",
+          conf.int = TRUE,
+          add.params = list(color = "blue",
+                            fill = "lightgray"),
+          facet.by = "Cell_Type",
+          color = "Cell_Type",
+          palette = "aaas", 
+          alpha = 0.6)+
+  stat_cor(method = "pearson")+
+  facet_wrap(. ~ Cell_Type, scales = "free_y")+
+  geom_blank(aes(x=bmi, y=Cell_Prop*1.2, label=Cell_Prop))+
+  theme(legend.position = "none")
+
+
+```
+
+```{r}
+eage <- read_csv(here::here("Data/Clock_Data/2005/QC_Norm_LisaMcEwan_meth_DatMini3.output.csv")) %>% 
+  as_character(uncchdid)
+
+
+long_eage <-bind_rows(eage %>% 
+            mutate(sample = "2005"), 
+          nsf_merged %>% 
+            mutate(sample = "2009-2014"))
+```
+
+```{r, fig.width = 2.5, fig.height= 1.5}
+long_eage %>% 
+  ggplot(., aes(x = sample, y = AgeAccelerationResidual, group = uncchdid, color = uncchdid))+
+  geom_jitter(alpha = 0.3, width = 0.04)+
+  geom_line(alpha = 0.6)+
+  theme_bw()+
+ # scale_color_gradient(low = "navyblue", high = "red")+
+  theme(legend.position = "none")
+```
+

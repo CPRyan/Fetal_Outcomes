@@ -1,0 +1,28 @@
+---
+title: "README"
+author: "Calen P. Ryan and Raviraj Rege"
+date: "7/1/2021"
+output: html_document
+---
+
+Use this document for metadata about the project. This could include:  
+
+* Clarity: Notes about analysis decisions  
+* Reproducibility: Details for someone else picking up the analysis (or future you)  
+* Something else (feel free to add)  
+ 
+The document uses Rmarkdown. You can find out more about how to write using this language [in this cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf).
+
+
+# Setup
+
+This project will be focusing on epigenetic age among a subset of about 334 women during pregnancy (denoted by '_p'). Also included are another 36 samples immediately following pregnancy (denoted by a '_b'). 
+
+The analysis will first focus on two already created datasets:
+
+* 'full_nsf_w_covariates.csv': phenotypic dataset created using the 14_Checking and Merging.Rmd (in CPR_Misc folder, run in Cebu_reproductive_histories project) by Dr. Ryan, March 2, 2021.
+* 'clock_long_w_baddetP_kept_in.output.csv: contains the epigenetic age output for the samples above. Created by Dr. Ryan after preprocessing using the epigenetic clock calculator [here](http://dnamage.genetics.ucla.edu/new), February 10, 2021. 
+
+
+
+

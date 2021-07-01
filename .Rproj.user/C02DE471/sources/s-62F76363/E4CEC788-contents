@@ -1,0 +1,26 @@
+---
+title: "Replicate_2005"
+author: "Calen P. Ryan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+Created March 1st, 2021.
+
+Notes:
+- My original epigenetic age dataset had "age" wrong in it. Age was for survey, not blood draw. It actually didn't really matter, as I didn't use AgeAccel, instead I included ic_age_blood05 or whatever it's called. This **was** correct. The new version (which I'm using) has the correct age in it. - There were several individuals with mismatched sex, and several women where Chris's parity differed from mine. Those are corrected here. 
+
+
+
+```{r, warnings = FALSE, messages = FALSE}
+library(tidyverse)
+library(sjlabelled)
+library(readr)
+```
+
+
+```{r}
+eage <- read_csv(here::here("Data/Clock_Data/2005/QC_Norm_LisaMcEwan_meth_DatMini3.output.csv")) %>% 
+  as.character(eage$uncchdid)
+```
+
