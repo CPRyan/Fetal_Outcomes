@@ -1,0 +1,84 @@
+---
+title: "EDA_Phenotypic"
+author: "Raviraj Rege"
+date: "7/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+#Loading packages
+library(tidyverse)
+library(janitor)
+library(skimr)
+library(corrplot)
+library(RColorBrewer)
+here::here()
+#Reading in data
+raw_pheno <- read_csv(file = here::here("Data/Phenotypic_Data/full_nsf_w_covariates.csv")) %>%
+  clean_names()
+```
+
+```{r}
+usable_pheno <- raw_pheno %>%
+  select(uncchdid, monthprg, dayprg, yearprg, sample_group, sample_type, iccsex, date_prg_term, hour, minute, am_pm, sourcewt, date_icc_meas, icc_weight_birth, icc_length_home, icc_weight_home, icc_armcircm_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, icc_abdom_mean_home) %>%
+  filter(sample_type == "pregnancy") %>%
+  mutate(icc_total_skin_mean_home = icc_tricep_mean_home + icc_bicep_mean_home + icc_subscap_mean_home + icc_supra_mean_home + icc_calf_mean_home + icc_thigh_mean_home)
+```
+
+```{r}
+skimr::skim(usable_pheno)
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_weight_birth)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_length_home)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_weight_home)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_armcircm_home)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_total_skin_mean_home)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_headcirc_mean_home)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = icc_abdom_mean_home)) +
+  geom_histogram()
+```
+
+```{r}
+usable_pheno2 <- usable_pheno %>% select(icc_weight_birth, icc_length_home, icc_weight_home, icc_armcircm_home, icc_headcirc_mean_home, icc_abdom_mean_home, icc_total_skin_mean_home)
+M <- cor(usable_pheno2, use = "complete.obs")
+corrplot(M, type="upper", order="hclust",
+         col=brewer.pal(n=8, name="RdYlBu"))
+```
+
