@@ -1,8 +1,9 @@
 ---
-title: "EDA_Phenotypic"
+title: "EDA_Phenotypic_Preliminary"
 author: "Raviraj Rege"
 date: "7/21/2021"
-output: html_document
+output:
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -16,22 +17,34 @@ library(janitor)
 library(skimr)
 library(corrplot)
 library(RColorBrewer)
+library(haven)
 here::here()
-#Reading in data
+#Reading and Updating data
 raw_pheno <- read_csv(file = here::here("Data/Phenotypic_Data/full_nsf_w_covariates.csv")) %>%
   clean_names()
+curr_preg <- read_dta(file = here::here("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta")) %>%
+  clean_names %>%
+  select(uncchdid, lmpdate)
 ```
+
+## Combining in Raw Data for Usable Data
 
 ```{r}
 usable_pheno <- raw_pheno %>%
   select(uncchdid, monthprg, dayprg, yearprg, sample_group, sample_type, iccsex, date_prg_term, hour, minute, am_pm, sourcewt, date_icc_meas, icc_weight_birth, icc_length_home, icc_weight_home, icc_armcircm_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, icc_abdom_mean_home) %>%
   filter(sample_type == "pregnancy") %>%
-  mutate(icc_total_skin_mean_home = icc_tricep_mean_home + icc_bicep_mean_home + icc_subscap_mean_home + icc_supra_mean_home + icc_calf_mean_home + icc_thigh_mean_home)
+  mutate(icc_total_skin_mean_home = icc_tricep_mean_home + icc_bicep_mean_home + icc_subscap_mean_home + icc_supra_mean_home + icc_calf_mean_home + icc_thigh_mean_home) %>%
+  full_join(curr_preg, key = uncchdid) %>%
+  mutate(gestational_age = date_prg_term - lmpdate, measurement_age = date_icc_meas - date_prg_term)
 ```
+
+## Summary Statistics Overview
 
 ```{r}
 skimr::skim(usable_pheno)
 ```
+
+## Distribution of Birth Weight
 
 ```{r}
 usable_pheno %>%
@@ -39,11 +52,15 @@ usable_pheno %>%
   geom_histogram()
 ```
 
+## Distribution of Length Measured at Home
+
 ```{r}
 usable_pheno %>%
   ggplot(mapping = aes(x = icc_length_home)) +
   geom_histogram()
 ```
+
+## Distribution of Weight Measured at Home
 
 ```{r}
 usable_pheno %>%
@@ -51,11 +68,15 @@ usable_pheno %>%
   geom_histogram()
 ```
 
+## Distribution of Arm Circumference Measured at Home
+
 ```{r}
 usable_pheno %>%
   ggplot(mapping = aes(x = icc_armcircm_home)) +
   geom_histogram()
 ```
+
+## Distribution of Total Skin Fold Thickness Measured at Home
 
 ```{r}
 usable_pheno %>%
@@ -63,17 +84,39 @@ usable_pheno %>%
   geom_histogram()
 ```
 
+## Distribution of Head Circumference Measured at Home
+
 ```{r}
 usable_pheno %>%
   ggplot(mapping = aes(x = icc_headcirc_mean_home)) +
   geom_histogram()
 ```
 
+## Distribution of Abdominal Circumference Measured at Home
+
 ```{r}
 usable_pheno %>%
   ggplot(mapping = aes(x = icc_abdom_mean_home)) +
   geom_histogram()
 ```
+
+## Distribution of Gestational Age at Birth (Date of End of Pregnancy - Date of Last Menstrual Period)
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = gestational_age)) +
+  geom_histogram()
+```
+
+## Distribution of Age at Measurement at Home (Date of Measurement - Date of End of Pregnancy)
+
+```{r}
+usable_pheno %>%
+  ggplot(mapping = aes(x = measurement_age)) +
+  geom_histogram()
+```
+
+## Correlation Plot between various Phenotypic Variables
 
 ```{r}
 usable_pheno2 <- usable_pheno %>% select(icc_weight_birth, icc_length_home, icc_weight_home, icc_armcircm_home, icc_headcirc_mean_home, icc_abdom_mean_home, icc_total_skin_mean_home)
