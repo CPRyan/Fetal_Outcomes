@@ -183,8 +183,6 @@ preg_all_57914_long %>%
 ```
 
 
-
-
 ```{r}
 intersect(names(Cebu_sample_reflist_for_Koborlab_update_08_2020), names(preg_dnam14))
 # uncchdid
