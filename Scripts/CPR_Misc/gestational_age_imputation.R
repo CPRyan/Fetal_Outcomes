@@ -10,16 +10,52 @@ library(haven)
 raw_pheno <- read_csv(file = here::here("Data/Phenotypic_Data/full_nsf_w_covariates.csv")) %>%
   clean_names()
 
+# Check for missing lmp or dur
+raw_pheno %>% select(contains("lmp"))
+# Not present.
 
 # Load pregnancy data for dates and ids
 currpreg_dates <- read_dta("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta") %>% 
-  select(uncchdid, nsfnumb, pregord, lmpdate, durmonth, )
+  select(uncchdid, nsfnumb, pregord, lmpdate, durmonth)
+
+# Check for missing lmp or dur
+dim(currpreg_dates)
+currpreg_dates %>% 
+  summary()
+# Only missing 4 for lmp date...
 
 
 # Left join pregnancy dates to raw pheno
-raw_pheno <-left_join(raw_pheno, 
+raw_pheno_new <-left_join(raw_pheno, 
                       currpreg_dates, 
                       by = c("uncchdid", "nsfnumb", "pregord_all" = "pregord"))
+
+raw_pheno_new %>% 
+  summary()
+# Ok so I'm missing 125 for lmpdate, and 123 for durmonth. 
+# The issue may be arising where pregord_all and pregord are supposed to merge
+
+
+# Join but remove pregord_all = pregord requirement (i.e. assume that my calculation of pregord all is right or pregord is, but not both)
+raw_pheno <-left_join(raw_pheno, 
+          currpreg_dates, 
+          by = c("uncchdid", "nsfnumb"))
+
+summary(raw_pheno)
+# Only 2 NAs now. 
+
+# Now quickly check pregord_all/pregord
+raw_pheno %>% 
+  filter(pregord_all != pregord) %>% 
+  gather(., key = pregord_type, value = number, c(pregord,pregord_all)) %>% 
+  ggplot(., aes(pregord_type, number, group = uncchdid))+
+  geom_point(alpha = 0.2)+
+  geom_line(alpha = 0.1)
+
+# Ok, pregord_all is higher for many than pregord. Also, pregord_all is meant to include any pregnancies that took place during the NSF survey. Use pregord_all.
+
+
+
 
 
 # Build to be consistent with Chris's code (below)
@@ -85,20 +121,95 @@ ga_file[ga_file$uncchdid == "23228", "lmpdate"] <-as_date("2010-02-15")
 ga_file <-ga_file %>% 
   mutate(gestage = date_preg_term - lmpdate) 
 
+mean(ga_file$gestage, na.rm = T)
+# 276.7 days. Ok. That seems biased towards earlier
+
+range(ga_file$gestage, na.rm = TRUE)
+# That's a crazy difference, even after removing the year error above. 
+
 # Check
 ga_file %>% 
   ggplot(., aes(x = gestage))+
-  geom_histogram()
-# good.
+  geom_histogram()+
+  geom_vline(xintercept = c(269, 308)) # based on the paper cited below
+# Yeah. Looks oddly left skewed.
+
+# What if I filter to only those with consistent pregord = pregord_all
+raw_pheno[raw_pheno$uncchdid == "23228", "lmpdate"] <-as_date("2010-02-15")
+
+raw_pheno %>% 
+  mutate(gestage = date_preg_term - lmpdate) %>% 
+  filter(pregord_all == pregord)
+  ggplot(., aes(x = gestage))+
+  geom_histogram()+
+  geom_vline(xintercept = c(269, 308))
+# Even including only those where pregord and pregord_all fit it looks left skewed. I take it these are the data. 
+
+# Check using only pregnancy samples  
+raw_pheno %>% 
+  mutate(gestage = date_preg_term - lmpdate) %>% 
+  filter(sample_type == "pregnancy") %>% 
+  nrow()
+# 334 - Do I have some duplicates? 
+
+raw_pheno %>% 
+  mutate(gestage = date_preg_term - lmpdate) %>% 
+  filter(sample_type == "pregnancy") %>% 
+  group_by(uncchdid) %>% 
+  filter(n() > 1)
+# Nope!
+
+
+# A few checks...
+
+
+raw_pheno_w_ga <-raw_pheno %>% 
+  mutate(gestage = date_preg_term - lmpdate) %>% 
+  filter(sample_type == "pregnancy")
+
+raw_pheno_w_ga %>% 
+  ggplot(., aes(x = gestage, y = icc_weight_birth, col = iccsex)) + 
+  geom_point(alpha = 0.8)+
+  theme_bw()
+
+
+raw_pheno_w_ga %>%
+  mutate(icc_age_at_meas = date_icc_meas-date_prg_term) %>% 
+  filter(icc_age_at_meas < 21) %>% 
+  ggplot(., aes(x = icc_age_at_meas, y = icc_length_home, col = iccsex)) +
+  geom_point(size = 3)+
+  scale_color_brewer(type = "qual", palette = 1)+
+  facet_grid(~iccsex)+
+  theme_bw()
+# Ok looks decent. 
+# 
 # 
 
+# write_csv(raw_pheno_w_ga, here::here("Output/Data", "raw_pheno_w_ga.csv")
+
+
+
+
+
+
+
+###################################################
+# Below is a section focused on imputing. We don't really need this after fixing the issue with pregord and pregord_all merging creating missing values. 
+###################################################
 
 # Check relationship between durmonth and gestage
 ###############
-ga_file
-  ggplot(., aes(x = durmonth, y = gestage))+
-  geom_point()
+###############
+        
+month(sjlabelled::as_numeric(ga_file$durmonth), label = FALSE)
 
+ga_file$gestage_days <-
+  sjlabelled::remove_all_labels(ga_file$gestage)
+
+ga_file %>% 
+  ggplot(., aes(x = durmonth, y = gestage_days, group = durmonth))+
+  geom_boxplot(alpha = 0.2)+
+  geom_jitter(width = 0.1, alpha = 0.2)
 # Ok I have very little faith in durmonth as a variable - it shows almost no relationship with number of dates between lmp and date_preg_term. Only use if absolutely necessary. 
 
  
