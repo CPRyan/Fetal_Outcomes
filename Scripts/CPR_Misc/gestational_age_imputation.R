@@ -15,6 +15,7 @@ raw_pheno %>% select(contains("lmp"))
 # Not present.
 
 # Load pregnancy data for dates and ids
+<<<<<<< HEAD
 currpreg_dates <- read_dta("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta") %>% 
   select(uncchdid, nsfnumb, pregord, lmpdate, durmonth)
 
@@ -23,6 +24,10 @@ dim(currpreg_dates)
 currpreg_dates %>% 
   summary()
 # Only missing 4 for lmp date...
+=======
+currpreg_dates <- read_dta(file = here::here("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta")) %>% 
+  select(uncchdid, nsfnumb, pregord, lmpdate, durmonth, )
+>>>>>>> 1b26f02cb627b481365e5322dc7c12d09ab2375d
 
 
 # Left join pregnancy dates to raw pheno
@@ -199,9 +204,6 @@ raw_pheno_w_ga %>%
 
 # Check relationship between durmonth and gestage
 ###############
-###############
-        
-month(sjlabelled::as_numeric(ga_file$durmonth), label = FALSE)
 
 ga_file$gestage_days <-
   sjlabelled::remove_all_labels(ga_file$gestage)
@@ -254,7 +256,7 @@ ga_file <-ga_file %>%
 
 # Now, fill in the missing gestation ages. 
 # Impute using 'mice' package
-install.packages("mice")
+# install.packages("mice") <- already installed
 library(mice)
 
 
@@ -310,5 +312,5 @@ raw_pheno_gest_impute <-left_join(raw_pheno,
           ga_file_done_imp %>% 
             select(uncchdid, best_or_imputed_gestage_icc))
 
-write_csv(raw_pheno_gest_impute, file = here::here("Output/Data/raw_pheno_gest_impute.csv"))
-          
+#write_csv(raw_pheno_gest_impute, file = here::here("Output/Data/raw_pheno_gest_impute.csv"))
+# Written as csv
