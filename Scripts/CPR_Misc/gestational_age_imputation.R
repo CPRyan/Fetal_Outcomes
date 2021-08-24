@@ -15,7 +15,7 @@ raw_pheno %>% select(contains("lmp"))
 # Not present.
 
 # Load pregnancy data for dates and ids
-<<<<<<< HEAD
+
 currpreg_dates <- read_dta("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta") %>% 
   select(uncchdid, nsfnumb, pregord, lmpdate, durmonth)
 
@@ -24,10 +24,10 @@ dim(currpreg_dates)
 currpreg_dates %>% 
   summary()
 # Only missing 4 for lmp date...
-=======
+
 currpreg_dates <- read_dta(file = here::here("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta")) %>% 
   select(uncchdid, nsfnumb, pregord, lmpdate, durmonth, )
->>>>>>> 1b26f02cb627b481365e5322dc7c12d09ab2375d
+
 
 
 # Left join pregnancy dates to raw pheno
@@ -120,7 +120,7 @@ ga_file %>%
 # Ok, so clearly the year was just coded wrong. 
 
 # Fix the year of lmp for 23228
-ga_file[ga_file$uncchdid == "23228", "lmpdate"] <-as_date("2010-02-15")
+ga_file[ga_file$uncchdid == "23228", "lmpdate"] <- lubridate::as_date("2010-02-15")
 
 # Recalculate gestage
 ga_file <-ga_file %>% 
@@ -140,11 +140,11 @@ ga_file %>%
 # Yeah. Looks oddly left skewed.
 
 # What if I filter to only those with consistent pregord = pregord_all
-raw_pheno[raw_pheno$uncchdid == "23228", "lmpdate"] <-as_date("2010-02-15")
+raw_pheno[raw_pheno$uncchdid == "23228", "lmpdate"] <- lubridate::as_date("2010-02-15")
 
 raw_pheno %>% 
   mutate(gestage = date_preg_term - lmpdate) %>% 
-  filter(pregord_all == pregord)
+  filter(pregord_all == pregord) %>%
   ggplot(., aes(x = gestage))+
   geom_histogram()+
   geom_vline(xintercept = c(269, 308))
@@ -188,7 +188,8 @@ raw_pheno_w_ga %>%
   theme_bw()
 # Ok looks decent. 
 # 
-# 
+raw_pheno_w_ga %>% 
+  select(contains("smok"))
 
 # write_csv(raw_pheno_w_ga, here::here("Output/Data", "raw_pheno_w_ga.csv")
 
