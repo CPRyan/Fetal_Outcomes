@@ -26,7 +26,7 @@ skimr::skim(gest_vars)
 ## Distribution of Birth Weight
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_weight_birth)) +
   geom_histogram()
 
@@ -34,7 +34,7 @@ gest_vars %>%
 ## Distribution of Length Measured at Home
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_length_home)) +
   geom_histogram()
 
@@ -42,7 +42,7 @@ gest_vars %>%
 ## Distribution of Weight Measured at Home
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_weight_home)) +
   geom_histogram()
 
@@ -50,7 +50,7 @@ gest_vars %>%
 ## Distribution of Arm Circumference Measured at Home
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_armcircm_home)) +
   geom_histogram()
 
@@ -58,7 +58,7 @@ gest_vars %>%
 ## Distribution of Total Skin Fold Thickness Measured at Home
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_total_skin_mean_home)) +
   geom_histogram()
 
@@ -66,7 +66,7 @@ gest_vars %>%
 ## Distribution of Head Circumference Measured at Home
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_headcirc_mean_home)) +
   geom_histogram()
 
@@ -74,23 +74,23 @@ gest_vars %>%
 ## Distribution of Abdominal Circumference Measured at Home
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = icc_abdom_mean_home)) +
   geom_histogram()
 
 
-## Distribution of Gestational Age at Birth
+## Distribution of Gestational Age at Birth (New Imputed Code)
 
 
-gest_vars %>%
-  ggplot(mapping = aes(x = gestage)) +
+imp_gest_vars %>%
+  ggplot(mapping = aes(x = best_or_imputed_gestage_icc)) +
   geom_histogram()
 
 
 ## Distribution of Age at Measurement at Home (Date of Measurement - Date of End of Pregnancy) --> seems fishy that there are measurements that are nearly/over a month after birth. What to do here?
 
 
-gest_vars %>%
+imp_gest_vars %>%
   ggplot(mapping = aes(x = measurement_age)) +
   geom_histogram()
 
@@ -98,8 +98,8 @@ gest_vars %>%
 ## Correlation Plot between various Phenotypic Variables
 
 
-gest_vars2 <- gest_vars %>% select(icc_weight_birth, icc_length_home, icc_weight_home, icc_armcircm_home, icc_headcirc_mean_home, icc_abdom_mean_home, icc_total_skin_mean_home)
-M <- cor(gest_vars2, use = "complete.obs")
+imp_gest_vars2 <- imp_gest_vars %>% select(icc_weight_birth, icc_length_home, icc_weight_home, icc_armcircm_home, icc_headcirc_mean_home, icc_abdom_mean_home, icc_total_skin_mean_home)
+M <- cor(imp_gest_vars2, use = "complete.obs")
 corrplot(M, type="upper", order="hclust",
          col=brewer.pal(n=8, name="RdYlBu"))
 
