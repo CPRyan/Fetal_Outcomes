@@ -29,7 +29,10 @@ full_ses_anthro <- read_csv(file = here::here("Data/Phenotypic_Data/full_ses_ant
   select(uncchdid, ses_pc1) %>%
   unique()
 
+# Combine all
 combined_data <- left_join(raw_pheno_gest, BMI_values, by = c("uncchdid")) %>%
   left_join(clock_data, by = c("uncchdid")) %>%
   left_join(full_ses_anthro, by = c("uncchdid")) %>%
   unique()
+
+# Model building
