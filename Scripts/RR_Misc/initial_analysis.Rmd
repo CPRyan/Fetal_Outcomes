@@ -1,3 +1,16 @@
+---
+title: "Initial Analysis"
+author: "Raviraj Rege"
+date: "8/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
+```{r}
 # Loading packages
 library(tidyverse)
 library(lubridate)
@@ -49,52 +62,62 @@ combined_data <- left_join(BMI_values, icc_sex_data, by = c("uncchdid")) %>%
 combined_data <- combined_data %>%
   select(uncchdid, blood_spot_date, iccsex, date_prg_term, date_icc_meas, icc_length_home, icc_weight_home, icc_armcircm_home, icc_abdom_mean_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1)
 
-# Scatter plots of Ep Age vs. Weeks Preg
+# Create Blood Spot days variable
 combined_data <- combined_data %>%
   mutate(days_blood_preg = gestage - (date_prg_term - blood_spot_date)) %>%
   mutate(days_blood_preg = as.double(days_blood_preg))
+```
 
-## Scatter plot with correlation coefficient
+
+```{r}
 ggplot(data = combined_data, mapping = aes(x = days_blood_preg, y = ieaa)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "IEAA vs. Days Pregnant at Blood Spot")
 
 ggplot(data = combined_data, mapping = aes(x = days_blood_preg, y = eeaa)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "EEAA vs. Days Pregnant at Blood Spot")
 
 ggplot(data = combined_data, mapping = aes(x = days_blood_preg, y = age_accel_pheno)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "Age Accel Pheno Age vs. Days Pregnant at Blood Spot")
 
 ggplot(data = combined_data, mapping = aes(x = days_blood_preg, y = age_accel_grim)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "Age Accel Grim Age vs. Days Pregnant at Blood Spot")
+```
 
+
+```{r}
 ggplot(data = combined_data, mapping = aes(x = prebmiz, y = ieaa)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "IEAA vs. Pre-BMI z")
 
 ggplot(data = combined_data, mapping = aes(x = prebmiz, y = eeaa)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "EEAA vs. Pre-BMI z")
 
 ggplot(data = combined_data, mapping = aes(x = prebmiz, y = age_accel_pheno)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "Age Accel Pheno vs. Pre-BMI z")
 
 ggplot(data = combined_data, mapping = aes(x = prebmiz, y = age_accel_grim)) +
   geom_point() +
   stat_cor(method = "pearson") +
-  geom_smooth(method='lm', formula= y~x)
-# Z scorer
-library(zscorer)
-
-# Model building
+  geom_smooth(method='lm', formula= y~x) +
+  labs(title = "Age Accel Grim vs. Pre-BMI z")
+```
