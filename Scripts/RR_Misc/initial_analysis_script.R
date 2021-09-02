@@ -53,6 +53,9 @@ combined_data <- combined_data %>%
   mutate(icc_total_skin_mean_home = icc_tricep_mean_home + icc_bicep_mean_home + icc_subscap_mean_home + icc_supra_mean_home + icc_calf_mean_home + icc_thigh_mean_home) %>%
   mutate(measurement_age = as.double(date_icc_meas - date_prg_term))
 
+# Create new dataset
+write_csv(combined_data, here::here("Data", "combined_final_data.csv"))
+
 # Scatter plots of Ep Age vs. Weeks Preg
 combined_data <- combined_data %>%
   mutate(days_blood_preg = gestage - (date_prg_term - blood_spot_date)) %>%
@@ -99,124 +102,3 @@ ggplot(data = combined_data, mapping = aes(x = prebmiz, y = age_accel_grim)) +
   stat_cor(method = "pearson") +
   geom_smooth(method='lm', formula= y~x)
 
-# Model building
-
-## No Pre-BMI adjustments, IEAA
-ieaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
-
-ieaa_no_bmi_icc_length_home <- update(ieaa_no_bmi_icc_weight_home, icc_length_home ~ .)
-
-ieaa_no_bmi_icc_armcircm_home <- update(ieaa_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-ieaa_no_bmi_icc_abdom_mean_home <- update(ieaa_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-ieaa_no_bmi_icc_headcirc_mean_home <- update(ieaa_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-ieaa_no_bmi_icc_total_skin_mean_home <- update(ieaa_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(ieaa_no_bmi_icc_weight_home, ieaa_no_bmi_icc_length_home, ieaa_no_bmi_icc_armcircm_home, ieaa_no_bmi_icc_abdom_mean_home, ieaa_no_bmi_icc_headcirc_mean_home, ieaa_no_bmi_icc_total_skin_mean_home)
-
-## No Pre-BMI adjustments, EEAA
-eeaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
-
-eeaa_no_bmi_icc_length_home <- update(eeaa_no_bmi_icc_weight_home, icc_length_home ~ .)
-
-eeaa_no_bmi_icc_armcircm_home <- update(eeaa_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-eeaa_no_bmi_icc_abdom_mean_home <- update(eeaa_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-eeaa_no_bmi_icc_headcirc_mean_home <- update(eeaa_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-eeaa_no_bmi_icc_total_skin_mean_home <- update(eeaa_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(eeaa_no_bmi_icc_weight_home, eeaa_no_bmi_icc_length_home, eeaa_no_bmi_icc_armcircm_home, eeaa_no_bmi_icc_abdom_mean_home, eeaa_no_bmi_icc_headcirc_mean_home, eeaa_no_bmi_icc_total_skin_mean_home)
-
-## No Pre-BMI adjustments, phenoage
-age_accel_pheno_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
-
-age_accel_pheno_no_bmi_icc_length_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_length_home ~ .)
-
-age_accel_pheno_no_bmi_icc_armcircm_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-age_accel_pheno_no_bmi_icc_abdom_mean_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-age_accel_pheno_no_bmi_icc_headcirc_mean_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-age_accel_pheno_no_bmi_icc_total_skin_mean_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(age_accel_pheno_no_bmi_icc_weight_home, age_accel_pheno_no_bmi_icc_length_home, age_accel_pheno_no_bmi_icc_armcircm_home, age_accel_pheno_no_bmi_icc_abdom_mean_home, age_accel_pheno_no_bmi_icc_headcirc_mean_home, age_accel_pheno_no_bmi_icc_total_skin_mean_home)
-
-## No Pre-BMI adjustments, grimage
-age_accel_grim_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
-
-age_accel_grim_no_bmi_icc_length_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_length_home ~ .)
-
-age_accel_grim_no_bmi_icc_armcircm_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-age_accel_grim_no_bmi_icc_abdom_mean_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-age_accel_grim_no_bmi_icc_headcirc_mean_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-age_accel_grim_no_bmi_icc_total_skin_mean_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(age_accel_grim_no_bmi_icc_weight_home, age_accel_grim_no_bmi_icc_length_home, age_accel_grim_no_bmi_icc_armcircm_home, age_accel_grim_no_bmi_icc_abdom_mean_home, age_accel_grim_no_bmi_icc_headcirc_mean_home, age_accel_grim_no_bmi_icc_total_skin_mean_home)
-
-## Pre-BMI adjustments, IEAA
-ieaa_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
-
-ieaa_bmi_icc_length_home <- update(ieaa_bmi_icc_weight_home, icc_length_home ~ .)
-
-ieaa_bmi_icc_armcircm_home <- update(ieaa_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-ieaa_bmi_icc_abdom_mean_home <- update(ieaa_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-ieaa_bmi_icc_headcirc_mean_home <- update(ieaa_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-ieaa_bmi_icc_total_skin_mean_home <- update(ieaa_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(ieaa_bmi_icc_weight_home, ieaa_bmi_icc_length_home, ieaa_bmi_icc_armcircm_home, ieaa_bmi_icc_abdom_mean_home, ieaa_bmi_icc_headcirc_mean_home, ieaa_bmi_icc_total_skin_mean_home)
-
-## Pre-BMI adjustments, EEAA
-eeaa_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
-
-eeaa_bmi_icc_length_home <- update(eeaa_bmi_icc_weight_home, icc_length_home ~ .)
-
-eeaa_bmi_icc_armcircm_home <- update(eeaa_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-eeaa_bmi_icc_abdom_mean_home <- update(eeaa_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-eeaa_bmi_icc_headcirc_mean_home <- update(eeaa_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-eeaa_bmi_icc_total_skin_mean_home <- update(eeaa_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(eeaa_bmi_icc_weight_home, eeaa_bmi_icc_length_home, eeaa_bmi_icc_armcircm_home, eeaa_bmi_icc_abdom_mean_home, eeaa_bmi_icc_headcirc_mean_home, eeaa_bmi_icc_total_skin_mean_home)
-
-## Pre-BMI adjustments, phenoage
-age_accel_pheno_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
-
-age_accel_pheno_bmi_icc_length_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_length_home ~ .)
-
-age_accel_pheno_bmi_icc_armcircm_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-age_accel_pheno_bmi_icc_abdom_mean_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-age_accel_pheno_bmi_icc_headcirc_mean_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-age_accel_pheno_bmi_icc_total_skin_mean_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(age_accel_pheno_bmi_icc_weight_home, age_accel_pheno_bmi_icc_length_home, age_accel_pheno_bmi_icc_armcircm_home, age_accel_pheno_bmi_icc_abdom_mean_home, age_accel_pheno_bmi_icc_headcirc_mean_home, age_accel_pheno_bmi_icc_total_skin_mean_home)
-
-## Pre-BMI adjustments, grimage
-age_accel_grim_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
-
-age_accel_grim_bmi_icc_length_home <- update(age_accel_grim_bmi_icc_weight_home, icc_length_home ~ .)
-
-age_accel_grim_bmi_icc_armcircm_home <- update(age_accel_grim_bmi_icc_weight_home, icc_armcircm_home ~ .)
-
-age_accel_grim_bmi_icc_abdom_mean_home <- update(age_accel_grim_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
-
-age_accel_grim_bmi_icc_headcirc_mean_home <- update(age_accel_grim_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
-
-age_accel_grim_bmi_icc_total_skin_mean_home <- update(age_accel_grim_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
-
-sjPlot::tab_model(age_accel_grim_bmi_icc_weight_home, age_accel_grim_bmi_icc_length_home, age_accel_grim_bmi_icc_armcircm_home, age_accel_grim_bmi_icc_abdom_mean_home, age_accel_grim_bmi_icc_headcirc_mean_home, age_accel_grim_bmi_icc_total_skin_mean_home)
