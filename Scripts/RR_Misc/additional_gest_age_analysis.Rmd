@@ -1,0 +1,58 @@
+---
+title: "Additional Gest Age Analysis"
+author: "Raviraj Rege"
+date: "9/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+# Loading packages
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(skimr)
+library(corrplot)
+library(haven)
+library(ggpubr)
+library(sjlabelled)
+library(sjPlot)
+
+# Create new dataset
+combined_data <- read_csv(here::here("Data/combined_final_data.csv"))
+```
+
+#Additional Analysis with Gestational Age as Predictor
+
+## No BMI
+
+```{r}
+ieaa_no_bmi_gest_age_home <- lm(gestage ~ ieaa + measurement_age + iccsex + ses_pc1, data = combined_data)
+
+eeaa_no_bmi_gest_age_home <- lm(gestage ~ eeaa + measurement_age + iccsex + ses_pc1, data = combined_data)
+
+age_accel_pheno_no_bmi_gest_age_home <- lm(gestage ~ age_accel_pheno + measurement_age + iccsex + ses_pc1, data = combined_data)
+
+age_accel_grim_no_bmi_gest_age_home <- lm(gestage ~ age_accel_grim + measurement_age + iccsex + ses_pc1, data = combined_data)
+
+sjPlot::tab_model(ieaa_no_bmi_gest_age_home, eeaa_no_bmi_gest_age_home, age_accel_pheno_no_bmi_gest_age_home, age_accel_grim_no_bmi_gest_age_home)
+
+```
+
+## BMI
+
+```{r}
+ieaa_bmi_gest_age_home <- lm(gestage ~ ieaa + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+
+eeaa_bmi_gest_age_home <- lm(gestage ~ eeaa + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+
+age_accel_pheno_bmi_gest_age_home <- lm(gestage ~ age_accel_pheno + measurement_age + iccsex +  + prebmiz, data = combined_data)
+
+age_accel_grim_bmi_gest_age_home <- lm(gestage ~ age_accel_grim + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+
+sjPlot::tab_model(ieaa_bmi_gest_age_home, eeaa_bmi_gest_age_home, age_accel_pheno_bmi_gest_age_home, age_accel_grim_bmi_gest_age_home)
+
+```
