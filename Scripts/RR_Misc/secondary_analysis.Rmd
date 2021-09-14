@@ -553,3 +553,48 @@ sjPlot::tab_model(dn_am_timp1adj_age_bmi_icc_weight_home, dn_am_timp1adj_age_bmi
 
 ```
 
+<br><br>
+
+## No Pre-BMI adjustments, dn_am_tl_adj_age
+<br>
+
+```{r} 
+## No Pre-BMI adjustments, dn_am_tl_adj_age
+dn_am_tl_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+
+dn_am_tl_adj_age_no_bmi_icc_length_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+
+dn_am_tl_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+
+dn_am_tl_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+
+dn_am_tl_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+
+dn_am_tl_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+
+sjPlot::tab_model(dn_am_tl_adj_age_no_bmi_icc_weight_home, dn_am_tl_adj_age_no_bmi_icc_length_home, dn_am_tl_adj_age_no_bmi_icc_armcircm_home, dn_am_tl_adj_age_no_bmi_icc_abdom_mean_home, dn_am_tl_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_tl_adj_age_no_bmi_icc_total_skin_mean_home)
+
+```   
+
+<br><br>
+
+## Pre-BMI adjustments, dn_am_tl_adj_age
+<br>
+
+```{r} 
+## Pre-BMI adjustments, dn_am_tl_adj_age
+dn_am_tl_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+
+dn_am_tl_adj_age_bmi_icc_length_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+
+dn_am_tl_adj_age_bmi_icc_armcircm_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+
+dn_am_tl_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+
+dn_am_tl_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+
+dn_am_tl_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+
+sjPlot::tab_model(dn_am_tl_adj_age_bmi_icc_weight_home, dn_am_tl_adj_age_bmi_icc_length_home, dn_am_tl_adj_age_bmi_icc_armcircm_home, dn_am_tl_adj_age_bmi_icc_abdom_mean_home, dn_am_tl_adj_age_bmi_icc_headcirc_mean_home, dn_am_tl_adj_age_bmi_icc_total_skin_mean_home)
+
+```
