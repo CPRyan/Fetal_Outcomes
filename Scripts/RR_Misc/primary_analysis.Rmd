@@ -54,7 +54,7 @@ timp1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_timp1a
 
 tl_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age, data = combined_data)
 
-sjPlot::tab_model(ieaa_gest_age_no_meas, eeaa_gest_age_no_meas, phenoage_gest_age_no_meas, grimage_gest_age_no_meas, adm_gest_age_no_meas, b2m_gest_age_no_meas, cystatin_c_gest_age_no_meas, gdf15_gest_age_no_meas, leptin_gest_age_no_meas, pack_years_gest_age_no_meas, pai1_gest_age_no_meas, timp1_gest_age_no_meas, tl_gest_age_no_meas)
+sjPlot::tab_model(ieaa_gest_age_no_meas, eeaa_gest_age_no_meas, phenoage_gest_age_no_meas, grimage_gest_age_no_meas, adm_gest_age_no_meas, b2m_gest_age_no_meas, cystatin_c_gest_age_no_meas, gdf15_gest_age_no_meas, leptin_gest_age_no_meas, pack_years_gest_age_no_meas, pai1_gest_age_no_meas, timp1_gest_age_no_meas, tl_gest_age_no_meas, show.se = TRUE, show.stat = TRUE, show.std = TRUE)
 
 ```
 
@@ -87,6 +87,6 @@ timp1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + p
 
 tl_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age, data = combined_data)
 
-sjPlot::tab_model(ieaa_meas_weight, eeaa_meas_weight, phenoage_meas_weight, grimage_meas_weight, adm_meas_weight, b2m_meas_weight, cystatin_c_meas_weight, gdf15_meas_weight, leptin_meas_weight, pack_years_meas_weight, pai1_meas_weight, timp1_meas_weight, tl_meas_weight)
+sjPlot::tab_model(ieaa_meas_weight, eeaa_meas_weight, phenoage_meas_weight, grimage_meas_weight, adm_meas_weight, b2m_meas_weight, cystatin_c_meas_weight, gdf15_meas_weight, leptin_meas_weight, pack_years_meas_weight, pai1_meas_weight, timp1_meas_weight, tl_meas_weight, show.se = TRUE, show.stat = TRUE, show.std = TRUE)
 ```
 
