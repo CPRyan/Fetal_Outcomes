@@ -104,6 +104,7 @@ ggplot(data = combined_data, mapping = aes(x = dn_am_pai1adj_age, y = gestage)) 
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   labs(x = "Age Adjusted DNAm PAI-1", y = "Gestational Age (days)")
 
+# This was also significant here.
 ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age, y = gestage)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
