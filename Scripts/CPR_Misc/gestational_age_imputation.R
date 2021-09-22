@@ -26,7 +26,7 @@ currpreg_dates %>%
 # Only missing 4 for lmp date...
 
 currpreg_dates <- read_dta(file = here::here("Data/Phenotypic_Data/final NSF IC Female Pregnancy Tracking files/Pregnancy files/corrected Stata files/currpreg20141016.dta")) %>% 
-  select(uncchdid, nsfnumb, pregord, lmpdate, durmonth, )
+  select(uncchdid, nsfnumb, pregord, lmpdate, durmonth)
 
 
 
@@ -48,6 +48,8 @@ raw_pheno <-left_join(raw_pheno,
 
 summary(raw_pheno)
 # Only 2 NAs now. 
+
+
 
 # Now quickly check pregord_all/pregord
 raw_pheno %>% 
@@ -102,80 +104,97 @@ raw_pheno %>%
 
 # Create ga_file
 ###############
-ga_file <-raw_pheno %>% 
+
+
+# Below is code where I tried to impute gestage using durmonth
+raw_pheno_w_ga <-raw_pheno %>% 
   mutate(gestage = date_preg_term - lmpdate) %>% 
-  select(uncchdid, lmpdate, date_preg_term, gestage, durmonth, outcome, date_preg_anthro)
+  mutate(foo_start = make_date(1800, durmonth+1, 1), # Need a year to create date for durmonth
+         foo_end = make_date(1800, 1, 1),  # And need a reference year to turn into a duration
+         durdays = (foo_start - foo_end)+15) %>% # Convert month to days, make middle of month
+  mutate(lmp_inferred = date_preg_anthro - durdays) %>% # Infer lmp
+  mutate(gestage_inferred = date_preg_term - lmp_inferred) %>%  # infer gestage
+  mutate(best_gestage = if_else(!is.na(gestage), gestage,  gestage_inferred)) %>%
+  filter(sample_type == "pregnancy")  %>% 
+  select(-c(foo_start, foo_end, durdays, lmp_inferred))
 
-
+  
 # Look at GA distributions
 ###############
+
+raw_pheno_w_ga %>% 
+  mutate(gest_diff = gestage_inferred - gestage) %>%  #check diff
+  ggplot(., aes(x = gest_diff))+
+  geom_histogram()
+# Ok, so one super weird one. 
+
 ga_file %>%   
   ggplot(., aes(x = gestage))+
   geom_histogram()
 # Ok, so one is -100 - makes no sense.
 
 # Who is it?
-ga_file %>% 
+raw_pheno_w_ga %>%
   filter(gestage <0)
-# Ok, so clearly the year was just coded wrong. 
+# Can't have gestage <0, so clearly the year was just coded wrong for this one. 
 
 # Fix the year of lmp for 23228
-ga_file[ga_file$uncchdid == "23228", "lmpdate"] <- lubridate::as_date("2010-02-15")
+raw_pheno_w_ga[raw_pheno_w_ga$uncchdid == "23228", "lmpdate"] <- lubridate::as_date("2010-02-15")
 
 # Recalculate gestage
-ga_file <-ga_file %>% 
-  mutate(gestage = date_preg_term - lmpdate) 
+raw_pheno_w_ga <-raw_pheno_w_ga %>% 
+  mutate(gestage = date_preg_term - lmpdate) %>% 
+  mutate(best_gestage = if_else(!is.na(gestage), gestage,  gestage_inferred))
+  
 
-mean(ga_file$gestage, na.rm = T)
+mean(raw_pheno_w_ga$gestage, na.rm = T)
 # 276.7 days. Ok. That seems biased towards earlier
+mean(raw_pheno_w_ga$best_gestage, na.rm = T)
+# Pretty much identical
 
-range(ga_file$gestage, na.rm = TRUE)
-# That's a crazy difference, even after removing the year error above. 
+range(raw_pheno_w_ga$best_gestage, na.rm = TRUE)
+# Time differences in days
+# [1] 191 374
+# # That's a crazy difference, even after removing the year error above. 
+
 
 # Check
-ga_file %>% 
-  ggplot(., aes(x = gestage))+
+raw_pheno_w_ga %>% 
+  ggplot(., aes(x = best_gestage))+
   geom_histogram()+
-  geom_vline(xintercept = c(269, 308)) # based on the paper cited below
+  geom_vline(xintercept = c(224, 308)) 
+# 269 based on the paper cited below, but we use 224
 # Yeah. Looks oddly left skewed.
 
-# What if I filter to only those with consistent pregord = pregord_all
-raw_pheno[raw_pheno$uncchdid == "23228", "lmpdate"] <- lubridate::as_date("2010-02-15")
-
-raw_pheno %>% 
-  mutate(gestage = date_preg_term - lmpdate) %>% 
+# 
+raw_pheno_w_ga %>% 
   filter(pregord_all == pregord) %>%
-  ggplot(., aes(x = gestage))+
+  ggplot(., aes(x = best_gestage))+
   geom_histogram()+
-  geom_vline(xintercept = c(269, 308))
-# Even including only those where pregord and pregord_all fit it looks left skewed. I take it these are the data. 
+  geom_vline(xintercept = c(224, 308)) 
+# The paper below cites 269 as not normal. But we include slightly pre-term because it's relevant.
+# For some reason including only those women where pregord and pregord all makes it far more centered in the range described by the paper below. 
 
 # Check using only pregnancy samples  
 raw_pheno %>% 
-  mutate(gestage = date_preg_term - lmpdate) %>% 
   filter(sample_type == "pregnancy") %>% 
   nrow()
-# 334 - Do I have some duplicates? 
+# 334 - Ok. I'll be missing one for DNAm, and others for other variables.  
 
 raw_pheno %>% 
-  mutate(gestage = date_preg_term - lmpdate) %>% 
   filter(sample_type == "pregnancy") %>% 
   group_by(uncchdid) %>% 
   filter(n() > 1)
-# Nope!
+# No duplicates
 
 
 # A few checks...
-
-
-raw_pheno_w_ga <-raw_pheno %>% 
-  mutate(gestage = date_preg_term - lmpdate) %>% 
-  filter(sample_type == "pregnancy")
-
 raw_pheno_w_ga %>% 
   ggplot(., aes(x = gestage, y = icc_weight_birth, col = iccsex)) + 
   geom_point(alpha = 0.8)+
-  theme_bw()
+  theme_bw()+
+  geom_vline(xintercept = c(269, 308))
+
 
 
 raw_pheno_w_ga %>%
@@ -191,7 +210,7 @@ raw_pheno_w_ga %>%
 raw_pheno_w_ga %>% 
   select(contains("smok"))
 
-# write_csv(raw_pheno_w_ga, here::here("Output/Data", "raw_pheno_w_ga.csv")
+#write_csv(raw_pheno_w_ga, here::here("Output/Data", "raw_pheno_w_ga.csv"))
 
 
 

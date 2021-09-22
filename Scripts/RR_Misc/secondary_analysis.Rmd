@@ -30,7 +30,7 @@ combined_data <- read_csv(here::here("Data/combined_final_data.csv"))
 ## No Pre-BMI adjustments, IEAA
 ```{r}
 ## No Pre-BMI adjustments, IEAA
-ieaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+ieaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 ieaa_no_bmi_icc_length_home <- update(ieaa_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -50,7 +50,7 @@ sjPlot::tab_model(ieaa_no_bmi_icc_weight_home, ieaa_no_bmi_icc_length_home, ieaa
 ## No Pre-BMI adjustments, EEAA
 ```{r}
 ## No Pre-BMI adjustments, EEAA
-eeaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+eeaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 eeaa_no_bmi_icc_length_home <- update(eeaa_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -70,7 +70,7 @@ sjPlot::tab_model(eeaa_no_bmi_icc_weight_home, eeaa_no_bmi_icc_length_home, eeaa
 ## No Pre-BMI adjustments, Phenoage
 ```{r}
 ## No Pre-BMI adjustments, phenoage
-age_accel_pheno_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+age_accel_pheno_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 age_accel_pheno_no_bmi_icc_length_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -90,7 +90,7 @@ sjPlot::tab_model(age_accel_pheno_no_bmi_icc_weight_home, age_accel_pheno_no_bmi
 ## No Pre-BMI adjustments, Grimage
 ```{r}
 ## No Pre-BMI adjustments, grimage
-age_accel_grim_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+age_accel_grim_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 age_accel_grim_no_bmi_icc_length_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -110,7 +110,7 @@ sjPlot::tab_model(age_accel_grim_no_bmi_icc_weight_home, age_accel_grim_no_bmi_i
 ## Pre-BMI adjustments, IEAA
 ```{r}
 ## Pre-BMI adjustments, IEAA
-ieaa_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+ieaa_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 ieaa_bmi_icc_length_home <- update(ieaa_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -130,7 +130,7 @@ sjPlot::tab_model(ieaa_bmi_icc_weight_home, ieaa_bmi_icc_length_home, ieaa_bmi_i
 ## Pre-BMI adjustments, EEAA
 ```{r}
 ## Pre-BMI adjustments, EEAA
-eeaa_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+eeaa_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 eeaa_bmi_icc_length_home <- update(eeaa_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -150,7 +150,7 @@ sjPlot::tab_model(eeaa_bmi_icc_weight_home, eeaa_bmi_icc_length_home, eeaa_bmi_i
 ## Pre-BMI adjustments, phenoage
 ```{r}
 ## Pre-BMI adjustments, phenoage
-age_accel_pheno_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+age_accel_pheno_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 age_accel_pheno_bmi_icc_length_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -170,7 +170,7 @@ sjPlot::tab_model(age_accel_pheno_bmi_icc_weight_home, age_accel_pheno_bmi_icc_l
 ## Pre-BMI adjustments, grimage
 ```{r}
 ## Pre-BMI adjustments, grimage
-age_accel_grim_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+age_accel_grim_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 age_accel_grim_bmi_icc_length_home <- update(age_accel_grim_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -193,7 +193,7 @@ sjPlot::tab_model(age_accel_grim_bmi_icc_weight_home, age_accel_grim_bmi_icc_len
 ## No Pre-BMI adjustments, dn_am_adm_adj_age
 ```{r}
 ## No Pre-BMI adjustments, dn_am_adm_adj_age
-dn_am_adm_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_adm_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_adm_adj_age_no_bmi_icc_length_home <- update(dn_am_adm_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -216,7 +216,7 @@ sjPlot::tab_model(dn_am_adm_adj_age_no_bmi_icc_weight_home, dn_am_adm_adj_age_no
 
 ```{r}
 ## Pre-BMI adjustments, dn_am_adm_adj_age
-dn_am_adm_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_adm_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_adm_adj_age_bmi_icc_length_home <- update(dn_am_adm_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -238,7 +238,7 @@ sjPlot::tab_model(dn_am_adm_adj_age_bmi_icc_weight_home, dn_am_adm_adj_age_bmi_i
 
 ```{r}
 ## No Pre-BMI adjustments, dn_am_b2m_adj_age
-dn_am_b2m_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_b2m_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_b2m_adj_age_no_bmi_icc_length_home <- update(dn_am_b2m_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -261,7 +261,7 @@ sjPlot::tab_model(dn_am_b2m_adj_age_no_bmi_icc_weight_home, dn_am_b2m_adj_age_no
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_b2m_adj_age
-dn_am_b2m_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_b2m_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_b2m_adj_age_bmi_icc_length_home <- update(dn_am_b2m_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -284,7 +284,7 @@ sjPlot::tab_model(dn_am_b2m_adj_age_bmi_icc_weight_home, dn_am_b2m_adj_age_bmi_i
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_cystatin_c_adj_age
-dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_cystatin_c_adj_age_no_bmi_icc_length_home <- update(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -307,7 +307,7 @@ sjPlot::tab_model(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, dn_am_cystati
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_cystatin_c_adj_age
-dn_am_cystatin_c_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_cystatin_c_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_cystatin_c_adj_age_bmi_icc_length_home <- update(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -330,7 +330,7 @@ sjPlot::tab_model(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, dn_am_cystatin_c
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_gdf15adj_age
-dn_am_gdf15adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_gdf15adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_gdf15adj_age_no_bmi_icc_length_home <- update(dn_am_gdf15adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -353,7 +353,7 @@ sjPlot::tab_model(dn_am_gdf15adj_age_no_bmi_icc_weight_home, dn_am_gdf15adj_age_
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_gdf15adj_age
-dn_am_gdf15adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_gdf15adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_gdf15adj_age_bmi_icc_length_home <- update(dn_am_gdf15adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -376,7 +376,7 @@ sjPlot::tab_model(dn_am_gdf15adj_age_bmi_icc_weight_home, dn_am_gdf15adj_age_bmi
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_leptin_adj_age
-dn_am_leptin_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_leptin_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_leptin_adj_age_no_bmi_icc_length_home <- update(dn_am_leptin_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -399,7 +399,7 @@ sjPlot::tab_model(dn_am_leptin_adj_age_no_bmi_icc_weight_home, dn_am_leptin_adj_
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_leptin_adj_age
-dn_am_leptin_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_leptin_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_leptin_adj_age_bmi_icc_length_home <- update(dn_am_leptin_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -422,7 +422,7 @@ sjPlot::tab_model(dn_am_leptin_adj_age_bmi_icc_weight_home, dn_am_leptin_adj_age
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_packyrs_adj_age
-dn_am_packyrs_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_packyrs_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_packyrs_adj_age_no_bmi_icc_length_home <- update(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -445,7 +445,7 @@ sjPlot::tab_model(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, dn_am_packyrs_ad
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_packyrs_adj_age
-dn_am_packyrs_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_packyrs_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_packyrs_adj_age_bmi_icc_length_home <- update(dn_am_packyrs_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -468,7 +468,7 @@ sjPlot::tab_model(dn_am_packyrs_adj_age_bmi_icc_weight_home, dn_am_packyrs_adj_a
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_pai1adj_age
-dn_am_pai1adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_pai1adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_pai1adj_age_no_bmi_icc_length_home <- update(dn_am_pai1adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -491,7 +491,7 @@ sjPlot::tab_model(dn_am_pai1adj_age_no_bmi_icc_weight_home, dn_am_pai1adj_age_no
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_pai1adj_age
-dn_am_pai1adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_pai1adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_pai1adj_age_bmi_icc_length_home <- update(dn_am_pai1adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -514,7 +514,7 @@ sjPlot::tab_model(dn_am_pai1adj_age_bmi_icc_weight_home, dn_am_pai1adj_age_bmi_i
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_timp1adj_age
-dn_am_timp1adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_timp1adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_timp1adj_age_no_bmi_icc_length_home <- update(dn_am_timp1adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -537,7 +537,7 @@ sjPlot::tab_model(dn_am_timp1adj_age_no_bmi_icc_weight_home, dn_am_timp1adj_age_
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_timp1adj_age
-dn_am_timp1adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_timp1adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_timp1adj_age_bmi_icc_length_home <- update(dn_am_timp1adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -560,7 +560,7 @@ sjPlot::tab_model(dn_am_timp1adj_age_bmi_icc_weight_home, dn_am_timp1adj_age_bmi
 
 ```{r} 
 ## No Pre-BMI adjustments, dn_am_tl_adj_age
-dn_am_tl_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
+dn_am_tl_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + best_gestage + measurement_age + iccsex + ses_pc1, data = combined_data)
 
 dn_am_tl_adj_age_no_bmi_icc_length_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
 
@@ -583,7 +583,7 @@ sjPlot::tab_model(dn_am_tl_adj_age_no_bmi_icc_weight_home, dn_am_tl_adj_age_no_b
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_tl_adj_age
-dn_am_tl_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
+dn_am_tl_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + best_gestage + measurement_age + iccsex + ses_pc1 + prebmiz, data = combined_data)
 
 dn_am_tl_adj_age_bmi_icc_length_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
 

@@ -6,6 +6,8 @@ output:
   html_document: default
 ---
 
+Note that the gestational age variable created here is incomplete. Changes were made in the gestational age file, and the new gestational age is called 'best_gestage'
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
@@ -102,6 +104,7 @@ usable_pheno %>%
 
 ## Distribution of Gestational Age at Birth (Date of End of Pregnancy - Date of Last Menstrual Period)
 
+Note that the gestational age variable created here is incomplete. Changes were made in the gestational age file, and the new gestational age is called 'best_gestage'
 ```{r}
 usable_pheno %>%
   ggplot(mapping = aes(x = gestational_age)) +
