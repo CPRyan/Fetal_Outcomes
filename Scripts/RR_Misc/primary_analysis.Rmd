@@ -29,66 +29,66 @@ combined_data <- read_csv(here::here("Data/combined_final_data.csv")) #%>%
 ## Gestational Age Analyses (without Measurement Age)
 
 ```{r}
-ieaa_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + ieaa, data = combined_data)
+ieaa_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + ieaa + days_blood_preg, data = combined_data)
 
-eeaa_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + eeaa, data = combined_data)
+eeaa_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + eeaa + days_blood_preg, data = combined_data)
 
-phenoage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_pheno, data = combined_data)
+phenoage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_pheno + days_blood_preg, data = combined_data)
 
-grimage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_grim, data = combined_data)
+grimage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_grim + days_blood_preg, data = combined_data)
 
-adm_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age, data = combined_data)
+adm_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age + days_blood_preg, data = combined_data)
 
-b2m_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age, data = combined_data)
+b2m_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age + days_blood_preg, data = combined_data)
 
-cystatin_c_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age, data = combined_data)
+cystatin_c_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age + days_blood_preg, data = combined_data)
 
-gdf15_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age, data = combined_data)
+gdf15_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age + days_blood_preg, data = combined_data)
 
-leptin_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age, data = combined_data)
+leptin_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age + days_blood_preg, data = combined_data)
 
-pack_years_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age, data = combined_data)
+pack_years_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age + days_blood_preg, data = combined_data)
 
-pai1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age, data = combined_data)
+pai1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age + days_blood_preg, data = combined_data)
 
-timp1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age, data = combined_data)
+timp1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age + days_blood_preg, data = combined_data)
 
-tl_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age, data = combined_data)
+tl_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age + days_blood_preg, data = combined_data)
 
-sjPlot::tab_model(ieaa_gest_age_no_meas, eeaa_gest_age_no_meas, phenoage_gest_age_no_meas, grimage_gest_age_no_meas, adm_gest_age_no_meas, b2m_gest_age_no_meas, cystatin_c_gest_age_no_meas, gdf15_gest_age_no_meas, leptin_gest_age_no_meas, pack_years_gest_age_no_meas, pai1_gest_age_no_meas, timp1_gest_age_no_meas, tl_gest_age_no_meas, show.se = TRUE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(ieaa_gest_age_no_meas, eeaa_gest_age_no_meas, phenoage_gest_age_no_meas, grimage_gest_age_no_meas, adm_gest_age_no_meas, b2m_gest_age_no_meas, cystatin_c_gest_age_no_meas, gdf15_gest_age_no_meas, leptin_gest_age_no_meas, pack_years_gest_age_no_meas, pai1_gest_age_no_meas, timp1_gest_age_no_meas, tl_gest_age_no_meas, show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
 
 ```
 
 ## Measurement Weight Analyses
 
 ```{r}
-ieaa_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + ieaa, data = combined_data)
+ieaa_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + ieaa + days_blood_preg, data = combined_data)
 
-eeaa_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + eeaa, data = combined_data)
+eeaa_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + eeaa + days_blood_preg, data = combined_data)
 
-phenoage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + age_accel_pheno, data = combined_data)
+phenoage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + age_accel_pheno + days_blood_preg, data = combined_data)
 
-grimage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + age_accel_grim, data = combined_data)
+grimage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + age_accel_grim + days_blood_preg, data = combined_data)
 
-adm_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age, data = combined_data)
+adm_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age + days_blood_preg, data = combined_data)
 
-b2m_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age, data = combined_data)
+b2m_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age + days_blood_preg, data = combined_data)
 
-cystatin_c_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age, data = combined_data)
+cystatin_c_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age + days_blood_preg, data = combined_data)
 
-gdf15_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age, data = combined_data)
+gdf15_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age + days_blood_preg, data = combined_data)
 
-leptin_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age, data = combined_data)
+leptin_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age + days_blood_preg, data = combined_data)
 
-pack_years_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age, data = combined_data)
+pack_years_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age + days_blood_preg, data = combined_data)
 
-pai1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age, data = combined_data)
+pai1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age + days_blood_preg, data = combined_data)
 
-timp1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age, data = combined_data)
+timp1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age + days_blood_preg, data = combined_data)
 
-tl_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age, data = combined_data)
+tl_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age + days_blood_preg, data = combined_data)
 
-sjPlot::tab_model(ieaa_meas_weight, eeaa_meas_weight, phenoage_meas_weight, grimage_meas_weight, adm_meas_weight, b2m_meas_weight, cystatin_c_meas_weight, gdf15_meas_weight, leptin_meas_weight, pack_years_meas_weight, pai1_meas_weight, timp1_meas_weight, tl_meas_weight, show.se = TRUE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(ieaa_meas_weight, eeaa_meas_weight, phenoage_meas_weight, grimage_meas_weight, adm_meas_weight, b2m_meas_weight, cystatin_c_meas_weight, gdf15_meas_weight, leptin_meas_weight, pack_years_meas_weight, pai1_meas_weight, timp1_meas_weight, tl_meas_weight, show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
 ```
 
 ## Comparison to Ross Paper - Gest Age

@@ -1,6 +1,10 @@
 {
-    "path" : "~/Academic_2021/2021_Summer_Projects/Fetal_Outcomes/Data/Clock_Data",
+    "path" : "~/Academic_2021/2021_Summer_Projects/Fetal_Outcomes/Scripts/RR_Misc",
     "sortOrder" : [
+        {
+            "ascending" : false,
+            "columnIndex" : 4
+        },
         {
             "ascending" : true,
             "columnIndex" : 2

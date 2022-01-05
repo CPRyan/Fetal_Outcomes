@@ -1,0 +1,59 @@
+---
+title: "Seconday Analysis"
+author: "CPR"
+date: "01/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r echo=TRUE}
+# Loading packages
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(skimr)
+library(corrplot)
+library(haven)
+library(ggpubr)
+library(sjlabelled)
+library(sjPlot)
+library(gtsummary) # For the table.
+
+# Create new dataset
+combined_data <- read_csv(here::here("Data/combined_final_data.csv"))
+```
+
+Ok, so we want a table that has our main covariates of interest. Mean or median, a measure of spread, and a measure of range perhaps. 
+
+```{r}
+names(combined_data)
+
+
+desc_table <-combined_data %>% 
+  select(age, prebmiz, smoke, gradeic, ses_pc1, max_preg_all, measurement_age, days_blood_preg) %>%
+tbl_summary(statistic = list(all_continuous() ~ "{mean} ({min}, {max})")) 
+
+desc_table
+
+
+desc_table %>% 
+  gtsummary::as_flex_table() %>%
+  flextable::save_as_docx(path = here::here("Output/Figures", "Table_1.docx"))
+```
+
+```{r}
+desc_table <-combined_data %>% 
+  select(iccsex, gestage, measurement_age, icc_length_home:icc_headcirc_mean_home) %>%
+tbl_summary(statistic = list(all_continuous() ~ "{mean} ({min}, {max})")) 
+
+desc_table
+
+
+desc_table %>% 
+  gtsummary::as_flex_table() %>%
+  flextable::save_as_docx(path = here::here("Output/Figures", "Table_1_infants.docx"))
+```
+

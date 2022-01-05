@@ -54,30 +54,41 @@ combined_data1 <-left_join(combined_data1, BMI_values, by = c("uncchdid"))
 
 # How many filtered out for gestation age? 
 combined_data1 %>% 
-  filter(best_gestage > 308)
+  filter(gestage > 308) %>% nrow()
 # 10 longer than 308
 # 
 combined_data1 %>% 
-  filter(best_gestage < 224)
+  filter(gestage < 224) %>% nrow()
 # 5 shorter than 224 days
 # 
 combined_data1 %>% 
-  filter(is.na(best_gestage))
-# Used to be 2 missing data for gestage - now with inferred 'best_gestage' there are none.
+  filter(is.na(gestage)) %>% nrow()
+# 2 missing data for gestage (Do not infer these using the best_gestage variable)
 
 combined_data1 %>% 
-  filter(best_gestage > 308 | best_gestage < 224 | is.na(best_gestage))
-# 15 missing in total
+  filter(gestage > 308 | gestage < 224 | is.na(gestage)) %>% nrow()
+# 17 missing in total
 
 combined_data_ga_fixed <-combined_data1 %>%
-  filter(best_gestage <= 308 & best_gestage >= 224 & !is.na(best_gestage))
+  filter(gestage <= 308 & gestage >= 224 & !is.na(gestage))
+
+
 
 # Select relevant pieces
 combined_data <- combined_data_ga_fixed %>%
-  select(uncchdid, blood_spot_date, iccsex, date_prg_term, date_icc_meas, icc_length_home, icc_weight_home, icc_armcircm_home, icc_abdom_mean_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, best_gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1, gradeic, smoke) %>%
+  select(uncchdid, blood_spot_date, iccsex, date_prg_term, date_icc_meas, icc_length_home, icc_weight_home, icc_armcircm_home, icc_abdom_mean_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1, gradeic, smoke, max_preg_all) %>%
   mutate(icc_total_skin_mean_home = icc_tricep_mean_home + icc_bicep_mean_home + icc_subscap_mean_home + icc_supra_mean_home + icc_calf_mean_home + icc_thigh_mean_home) %>%
   mutate(measurement_age = date_icc_meas - date_prg_term) %>%
-  na.omit(uncchdid, iccsex, icc_weight_home, best_gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1)
+  mutate(days_blood_preg = gestage - (date_prg_term - blood_spot_date)) %>% # CPR added
+  na.omit(uncchdid, iccsex, icc_weight_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1)
+
+combined_data_ga_fixed %>% nrow()
+# 334-17 = 317
+# Check
+
+combined_data %>% nrow()
+# 300
+# Find 17 missing values.
 
 # Quick check of who's getting thrown out. 
 `%nin%` <- function (x, y) 
@@ -87,18 +98,18 @@ combined_data <- combined_data_ga_fixed %>%
 
 # Show women not in combined_data (i.e. after removing ga anomalies)
 combined_data_ga_fixed %>% 
-  filter(uncchdid %nin% combined_data$uncchdid) %>%
+  filter(uncchdid %nin% combined_data$uncchdid) %>% # Another 17. 
   select(-pregord_presnf, -hrshome, -notes) %>% 
   filter(uncchdid != "22814") %>%  ## 22814 did not pass quality control.
   select_if(function(x) any(is.na(x))) %>%
   visdat::vis_miss()
-# 17 women still missing after removing ga anomalies
+# 16 women still missing after removing ga anomalies and 22814 who did not pass QC.
 
-# 15 of the remaining women are missing pre-bmi
+# 14 of the remaining women are missing pre-bmi
 combined_data_ga_fixed %>% 
   filter(is.na(prebmiz))
   
-# The rest (3) come from women missing
+# The rest (2) others come from women missing all IC data
 combined_data_ga_fixed %>% 
   filter(uncchdid %nin% combined_data$uncchdid) %>%
   select(-pregord_presnf, -hrshome, -notes) %>% 
@@ -108,23 +119,43 @@ combined_data_ga_fixed %>%
   visdat::vis_miss()
 
 # 1 woman (22814) didn't pass epigenetic QC
-# 15 women were missing prebmi
+# 14 women were missing prebmi
 # 2 women were missing all (or nearly all such as skinfolds) icc data
+# This is 17 women. 
+# 
+# Compare those ICs in the ga_fixed with the combined data. The missing ones
 
 
+combined_data_ga_fixed %>% 
+  filter(uncchdid %nin% combined_data$uncchdid) %>% # Find the ones that are not in the reduced dataset
+  select(-contains("Probability")) %>% 
+  select_if(function(x) any(is.na(x))) %>% # select any colums with missing values
+  visdat::vis_miss()
+
+# Ok, so 
+# all but 3 are missing pre-preg BMI
+# 1 woman didn't pass epigenetic QC
+# 2 women were missing IC data. 
+# 
+# # Yes this is consistent with what I see.
+
+# Just check measurement age now:
 combined_data %>% 
-  filter(measurement_age > 14)
-# 4 women not meausured within 14 days. 
+  filter(measurement_age < 15) 
+# There are 4 individuals with late fetal measurements
 
-combined_data <-combined_data %>% 
-  filter(measurement_age <= 14)
 
 # Create new dataset
-write_csv(combined_data, here::here("Data", "combined_final_data.csv"))
+write_csv(combined_data %>% 
+            filter(measurement_age < 15), here::here("Data", "combined_final_data.csv"))
+
+
+
+
 
 # Scatter plots of Ep Age vs. Weeks Preg
 combined_data <- combined_data %>%
-  mutate(days_blood_preg = best_gestage - (date_prg_term - blood_spot_date)) %>%
+  mutate(days_blood_preg = gestage - (date_prg_term - blood_spot_date)) %>%
   mutate(days_blood_preg = as.double(days_blood_preg))
 
 ## Scatter plot with correlation coefficient
