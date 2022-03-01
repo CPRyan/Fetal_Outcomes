@@ -1,0 +1,13 @@
+---
+title: "README"
+author: "Calen P. Ryan"
+date: "1/7/2022"
+output: html_document
+---
+
+How to do the fetal outcomes analysis. 
+
+
+1. Run the initial analysis_script.R --- Do not run just the initial_analysis.Rmd at this point. I try will update if that changes.   
+2. Run the primary and secondary analyses scripts. I modified the .Rmd, so I can run these. 
+3. Change any of the parameters to _pregresid to make sure I have accounted for days pregnant in the analysis. 

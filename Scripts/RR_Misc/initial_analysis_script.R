@@ -76,11 +76,11 @@ combined_data_ga_fixed <-combined_data1 %>%
 
 # Select relevant pieces
 combined_data <- combined_data_ga_fixed %>%
-  select(uncchdid, blood_spot_date, iccsex, date_prg_term, date_icc_meas, icc_length_home, icc_weight_home, icc_armcircm_home, icc_abdom_mean_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1, gradeic, smoke, max_preg_all) %>%
+  select(uncchdid, blood_spot_date, iccsex, date_prg_term, date_icc_meas, icc_length_home, icc_weight_home, icc_armcircm_home, icc_abdom_mean_home, icc_tricep_mean_home, icc_bicep_mean_home, icc_subscap_mean_home, icc_supra_mean_home, icc_calf_mean_home, icc_thigh_mean_home, icc_headcirc_mean_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, cd8p_cd28n_cd45r_an, ses_pc1, gradeic, smoke, max_preg_all) %>%
   mutate(icc_total_skin_mean_home = icc_tricep_mean_home + icc_bicep_mean_home + icc_subscap_mean_home + icc_supra_mean_home + icc_calf_mean_home + icc_thigh_mean_home) %>%
   mutate(measurement_age = date_icc_meas - date_prg_term) %>%
   mutate(days_blood_preg = gestage - (date_prg_term - blood_spot_date)) %>% # CPR added
-  na.omit(uncchdid, iccsex, icc_weight_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, ses_pc1)
+  na.omit(uncchdid, iccsex, icc_weight_home, gestage, prebmiz, dn_am_age, age_acceleration_diff, age_acceleration_residual, age, dn_am_age_hannum, bio_age4ha_static, dn_am_pheno_age, dn_am_age_skin_blood_clock, dn_am_adm, dn_am_b2m, dn_am_cystatin_c, dn_am_gdf15, dn_am_leptin, dn_am_packyrs, dn_am_pai1, dn_am_timp1, dn_am_grim_age, dn_am_tl, dn_am_age_hannum_adj_age, bio_age4ha_static_adj_age, dn_am_pheno_age_adj_age, dn_am_age_skin_blood_clock_adj_age, dn_am_adm_adj_age, dn_am_b2m_adj_age, dn_am_cystatin_c_adj_age, dn_am_gdf15adj_age, dn_am_leptin_adj_age, dn_am_packyrs_adj_age, dn_am_pai1adj_age, dn_am_timp1adj_age, dn_am_grim_age_adj_age, dn_am_tl_adj_age, ieaa, eeaa, ieaa_hannum, age_acceleration_residual_hannum, age_accel_pheno, age_accel_grim, cd8p_cd28n_cd45r_an, ses_pc1)
 
 combined_data_ga_fixed %>% nrow()
 # 334-17 = 317
@@ -145,13 +145,10 @@ combined_data %>%
 # There are 4 individuals with late fetal measurements
 
 
-# Create new dataset
-write_csv(combined_data %>% 
-            filter(measurement_age < 15), here::here("Data", "combined_final_data.csv"))
 
-
-
-
+############################################################
+# Check scatter plots for days_blood_preg
+############################################################
 
 # Scatter plots of Ep Age vs. Weeks Preg
 combined_data <- combined_data %>%
@@ -198,4 +195,83 @@ ggplot(data = combined_data, mapping = aes(x = prebmiz, y = age_accel_grim)) +
   geom_point() +
   stat_cor(method = "pearson") +
   geom_smooth(method='lm', formula= y~x)
+
+
+############################################################
+# Pretty consistent effect - remove from AgeAccel Measures
+############################################################
+
+# First remove late measurement age. 
+combined_data <-combined_data %>% 
+  filter(measurement_age < 15)
+
+
+
+
+m1 <-lm(ieaa ~ days_blood_preg + smoke, combined_data);summary(m1)
+
+m2 <-update(m1, eeaa ~ . );summary(m2)
+
+m3 <-update(m1, age_accel_pheno ~ . );summary(m3)
+
+m4 <-update(m1, age_accel_grim ~ . );summary(m4)
+
+m5 <-update(m1, dn_am_adm_adj_age ~ . );summary(m5)
+
+m6 <-update(m1, dn_am_b2m_adj_age ~ . );summary(m6)
+
+m7 <-update(m1, dn_am_cystatin_c_adj_age ~ .);summary(m7)
+
+m8 <-update(m1, dn_am_gdf15adj_age ~ .);summary(m8)
+
+m9 <-update(m1, dn_am_leptin_adj_age ~ .);summary(m9)
+
+m10 <-update(m1, dn_am_packyrs_adj_age ~ . );summary(m10)
+
+m11 <-update(m1, dn_am_pai1adj_age ~ . );summary(m11)
+
+m12 <-update(m1, dn_am_timp1adj_age ~ . );summary(m12)
+
+m13 <-update(m1, dn_am_tl_adj_age ~ . );summary(m13)
+
+m14 <-update(m1, age_acceleration_residual ~ . );summary(m14)
+
+m15 <-update(m1, cd8p_cd28n_cd45r_an ~ . + age );summary(m15)
+
+
+# tab_model (also see tab_regression from the gtsummary packages for single results)
+sjPlot::tab_model(m1, m2, m3, m4, m5, m6, m7)
+sjPlot::tab_model(m8, m9, m10, m11, m12, m13, m14, m15)
+
+
+data.frame(cn = names(combined_data)) %>%
+  group_by(cn) %>%
+  summarize(cnt = n()) %>% 
+  print(n = Inf)
+
+combined_data <-modelr::spread_residuals(combined_data, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15) %>%
+  rename(ieaa_pregresid = 'm1', 
+         eeaa_pregresid = 'm2', 
+         age_accel_pheno_pregresid = 'm3', 
+         age_accel_grim_pregresid = 'm4', 
+         dn_am_adm_adj_age_pregresid = 'm5', 
+         dn_am_b2m_adj_age_pregresid = 'm6', 
+         dn_am_cystatin_c_adj_age_pregresid = 'm7',
+         dn_am_gdf15adj_age_pregresid = 'm8',          
+         dn_am_leptin_adj_age_pregresid = 'm9', 
+         dn_am_packyrs_adj_age_pregresid = 'm10', 
+         dn_am_pai1adj_age_pregresid = 'm11', 
+         dn_am_timp1adj_age_pregresid = 'm12',
+         dn_am_tl_adj_age_pregresid = 'm13', 
+         age_acceleration_residual_pregresid = 'm14', 
+         cd8p_cd28n_cd45r_an_age_pregresid = 'm15')
+
+
+
+############################################################
+# Write new CSV
+############################################################
+
+# Create new dataset
+write_csv(combined_data, here::here("Data", "combined_final_data.csv"))
 

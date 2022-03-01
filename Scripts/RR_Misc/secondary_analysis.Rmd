@@ -30,19 +30,19 @@ combined_data <- read_csv(here::here("Data/combined_final_data.csv"))
 No Pre-BMI adjustments, IEAA
 ```{r, eval = FALSE}
 ## No Pre-BMI adjustments, IEAA
-ieaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+ieaa_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-ieaa_no_bmi_icc_length_home <- update(ieaa_no_bmi_icc_weight_home, icc_length_home ~ .)
+ieaa_pregresid_no_bmi_icc_length_home <- update(ieaa_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-ieaa_no_bmi_icc_armcircm_home <- update(ieaa_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+ieaa_pregresid_no_bmi_icc_armcircm_home <- update(ieaa_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-ieaa_no_bmi_icc_abdom_mean_home <- update(ieaa_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+ieaa_pregresid_no_bmi_icc_abdom_mean_home <- update(ieaa_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-ieaa_no_bmi_icc_headcirc_mean_home <- update(ieaa_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+ieaa_pregresid_no_bmi_icc_headcirc_mean_home <- update(ieaa_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-ieaa_no_bmi_icc_total_skin_mean_home <- update(ieaa_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+ieaa_pregresid_no_bmi_icc_total_skin_mean_home <- update(ieaa_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(ieaa_no_bmi_icc_weight_home, ieaa_no_bmi_icc_length_home, ieaa_no_bmi_icc_armcircm_home, ieaa_no_bmi_icc_abdom_mean_home, ieaa_no_bmi_icc_headcirc_mean_home, ieaa_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(ieaa_pregresid_no_bmi_icc_weight_home, ieaa_pregresid_no_bmi_icc_length_home, ieaa_pregresid_no_bmi_icc_armcircm_home, ieaa_pregresid_no_bmi_icc_abdom_mean_home, ieaa_pregresid_no_bmi_icc_headcirc_mean_home, ieaa_pregresid_no_bmi_icc_total_skin_mean_home)
 ```
 
 <br><br>
@@ -50,39 +50,39 @@ sjPlot::tab_model(ieaa_no_bmi_icc_weight_home, ieaa_no_bmi_icc_length_home, ieaa
 ## No Pre-BMI adjustments, EEAA
 ```{r, eval = FALSE}
 ## No Pre-BMI adjustments, EEAA
-eeaa_no_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+eeaa_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-eeaa_no_bmi_icc_length_home <- update(eeaa_no_bmi_icc_weight_home, icc_length_home ~ .)
+eeaa_pregresid_no_bmi_icc_length_home <- update(eeaa_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-eeaa_no_bmi_icc_armcircm_home <- update(eeaa_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+eeaa_pregresid_no_bmi_icc_armcircm_home <- update(eeaa_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-eeaa_no_bmi_icc_abdom_mean_home <- update(eeaa_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+eeaa_pregresid_no_bmi_icc_abdom_mean_home <- update(eeaa_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-eeaa_no_bmi_icc_headcirc_mean_home <- update(eeaa_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+eeaa_pregresid_no_bmi_icc_headcirc_mean_home <- update(eeaa_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-eeaa_no_bmi_icc_total_skin_mean_home <- update(eeaa_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+eeaa_pregresid_no_bmi_icc_total_skin_mean_home <- update(eeaa_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(eeaa_no_bmi_icc_weight_home, eeaa_no_bmi_icc_length_home, eeaa_no_bmi_icc_armcircm_home, eeaa_no_bmi_icc_abdom_mean_home, eeaa_no_bmi_icc_headcirc_mean_home, eeaa_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(eeaa_pregresid_no_bmi_icc_weight_home, eeaa_pregresid_no_bmi_icc_length_home, eeaa_pregresid_no_bmi_icc_armcircm_home, eeaa_pregresid_no_bmi_icc_abdom_mean_home, eeaa_pregresid_no_bmi_icc_headcirc_mean_home, eeaa_pregresid_no_bmi_icc_total_skin_mean_home)
 ```
 
 <br><br>
 
- No Pre-BMI adjustments, Phenoage
+ No Pre-BMI adjustments, pheno_pregresidage
 ```{r, eval = FALSE}
-## No Pre-BMI adjustments, phenoage
-age_accel_pheno_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+## No Pre-BMI adjustments, pheno_pregresidage
+age_accel_pheno_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-age_accel_pheno_no_bmi_icc_length_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_length_home ~ .)
+age_accel_pheno_pregresid_no_bmi_icc_length_home <- update(age_accel_pheno_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-age_accel_pheno_no_bmi_icc_armcircm_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+age_accel_pheno_pregresid_no_bmi_icc_armcircm_home <- update(age_accel_pheno_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-age_accel_pheno_no_bmi_icc_abdom_mean_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+age_accel_pheno_pregresid_no_bmi_icc_abdom_mean_home <- update(age_accel_pheno_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-age_accel_pheno_no_bmi_icc_headcirc_mean_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+age_accel_pheno_pregresid_no_bmi_icc_headcirc_mean_home <- update(age_accel_pheno_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-age_accel_pheno_no_bmi_icc_total_skin_mean_home <- update(age_accel_pheno_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+age_accel_pheno_pregresid_no_bmi_icc_total_skin_mean_home <- update(age_accel_pheno_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(age_accel_pheno_no_bmi_icc_weight_home, age_accel_pheno_no_bmi_icc_length_home, age_accel_pheno_no_bmi_icc_armcircm_home, age_accel_pheno_no_bmi_icc_abdom_mean_home, age_accel_pheno_no_bmi_icc_headcirc_mean_home, age_accel_pheno_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(age_accel_pheno_pregresid_no_bmi_icc_weight_home, age_accel_pheno_pregresid_no_bmi_icc_length_home, age_accel_pheno_pregresid_no_bmi_icc_armcircm_home, age_accel_pheno_pregresid_no_bmi_icc_abdom_mean_home, age_accel_pheno_pregresid_no_bmi_icc_headcirc_mean_home, age_accel_pheno_pregresid_no_bmi_icc_total_skin_mean_home)
 ```
 
 <br><br>
@@ -90,19 +90,19 @@ sjPlot::tab_model(age_accel_pheno_no_bmi_icc_weight_home, age_accel_pheno_no_bmi
  No Pre-BMI adjustments, Grimage
 ```{r, eval = FALSE}
 ## No Pre-BMI adjustments, grimage
-age_accel_grim_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+age_accel_grim_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-age_accel_grim_no_bmi_icc_length_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_length_home ~ .)
+age_accel_grim_pregresid_no_bmi_icc_length_home <- update(age_accel_grim_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-age_accel_grim_no_bmi_icc_armcircm_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+age_accel_grim_pregresid_no_bmi_icc_armcircm_home <- update(age_accel_grim_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-age_accel_grim_no_bmi_icc_abdom_mean_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+age_accel_grim_pregresid_no_bmi_icc_abdom_mean_home <- update(age_accel_grim_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-age_accel_grim_no_bmi_icc_headcirc_mean_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+age_accel_grim_pregresid_no_bmi_icc_headcirc_mean_home <- update(age_accel_grim_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-age_accel_grim_no_bmi_icc_total_skin_mean_home <- update(age_accel_grim_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+age_accel_grim_pregresid_no_bmi_icc_total_skin_mean_home <- update(age_accel_grim_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(age_accel_grim_no_bmi_icc_weight_home, age_accel_grim_no_bmi_icc_length_home, age_accel_grim_no_bmi_icc_armcircm_home, age_accel_grim_no_bmi_icc_abdom_mean_home, age_accel_grim_no_bmi_icc_headcirc_mean_home, age_accel_grim_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(age_accel_grim_pregresid_no_bmi_icc_weight_home, age_accel_grim_pregresid_no_bmi_icc_length_home, age_accel_grim_pregresid_no_bmi_icc_armcircm_home, age_accel_grim_pregresid_no_bmi_icc_abdom_mean_home, age_accel_grim_pregresid_no_bmi_icc_headcirc_mean_home, age_accel_grim_pregresid_no_bmi_icc_total_skin_mean_home)
 ```
 
 <br><br>
@@ -110,39 +110,39 @@ sjPlot::tab_model(age_accel_grim_no_bmi_icc_weight_home, age_accel_grim_no_bmi_i
 ## Pre-BMI adjustments, IEAA
 ```{r}
 ## Pre-BMI adjustments, IEAA
-ieaa_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+ieaa_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ ieaa_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-ieaa_bmi_icc_length_home <- update(ieaa_bmi_icc_weight_home, icc_length_home ~ .)
+ieaa_pregresid_bmi_icc_length_home <- update(ieaa_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-ieaa_bmi_icc_armcircm_home <- update(ieaa_bmi_icc_weight_home, icc_armcircm_home ~ .)
+ieaa_pregresid_bmi_icc_armcircm_home <- update(ieaa_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-ieaa_bmi_icc_abdom_mean_home <- update(ieaa_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+ieaa_pregresid_bmi_icc_abdom_mean_home <- update(ieaa_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-ieaa_bmi_icc_headcirc_mean_home <- update(ieaa_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+ieaa_pregresid_bmi_icc_headcirc_mean_home <- update(ieaa_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-ieaa_bmi_icc_total_skin_mean_home <- update(ieaa_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+ieaa_pregresid_bmi_icc_total_skin_mean_home <- update(ieaa_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(ieaa_bmi_icc_weight_home, ieaa_bmi_icc_length_home, ieaa_bmi_icc_armcircm_home, ieaa_bmi_icc_abdom_mean_home, ieaa_bmi_icc_headcirc_mean_home, ieaa_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(ieaa_pregresid_bmi_icc_weight_home, ieaa_pregresid_bmi_icc_length_home, ieaa_pregresid_bmi_icc_armcircm_home, ieaa_pregresid_bmi_icc_abdom_mean_home, ieaa_pregresid_bmi_icc_headcirc_mean_home, ieaa_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S3_IEAA_other.doc"))
 ```
 
 <br><br>
 
-## Pre-BMI adjustments, EEAA
+## Pre-BMI adjustments, eeaa_id
 ```{r}
 ## Pre-BMI adjustments, EEAA
-eeaa_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+eeaa_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ eeaa_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-eeaa_bmi_icc_length_home <- update(eeaa_bmi_icc_weight_home, icc_length_home ~ .)
+eeaa_pregresid_bmi_icc_length_home <- update(eeaa_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-eeaa_bmi_icc_armcircm_home <- update(eeaa_bmi_icc_weight_home, icc_armcircm_home ~ .)
+eeaa_pregresid_bmi_icc_armcircm_home <- update(eeaa_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-eeaa_bmi_icc_abdom_mean_home <- update(eeaa_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+eeaa_pregresid_bmi_icc_abdom_mean_home <- update(eeaa_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-eeaa_bmi_icc_headcirc_mean_home <- update(eeaa_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+eeaa_pregresid_bmi_icc_headcirc_mean_home <- update(eeaa_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-eeaa_bmi_icc_total_skin_mean_home <- update(eeaa_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+eeaa_pregresid_bmi_icc_total_skin_mean_home <- update(eeaa_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(eeaa_bmi_icc_weight_home, eeaa_bmi_icc_length_home, eeaa_bmi_icc_armcircm_home, eeaa_bmi_icc_abdom_mean_home, eeaa_bmi_icc_headcirc_mean_home, eeaa_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(eeaa_pregresid_bmi_icc_weight_home, eeaa_pregresid_bmi_icc_length_home, eeaa_pregresid_bmi_icc_armcircm_home, eeaa_pregresid_bmi_icc_abdom_mean_home, eeaa_pregresid_bmi_icc_headcirc_mean_home, eeaa_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S4_EEAA_other.doc"))
 ```
 
 <br><br>
@@ -150,19 +150,19 @@ sjPlot::tab_model(eeaa_bmi_icc_weight_home, eeaa_bmi_icc_length_home, eeaa_bmi_i
 ## Pre-BMI adjustments, phenoage
 ```{r}
 ## Pre-BMI adjustments, phenoage
-age_accel_pheno_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+age_accel_pheno_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_pheno_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-age_accel_pheno_bmi_icc_length_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_length_home ~ .)
+age_accel_pheno_pregresid_bmi_icc_length_home <- update(age_accel_pheno_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-age_accel_pheno_bmi_icc_armcircm_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_armcircm_home ~ .)
+age_accel_pheno_pregresid_bmi_icc_armcircm_home <- update(age_accel_pheno_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-age_accel_pheno_bmi_icc_abdom_mean_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+age_accel_pheno_pregresid_bmi_icc_abdom_mean_home <- update(age_accel_pheno_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-age_accel_pheno_bmi_icc_headcirc_mean_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+age_accel_pheno_pregresid_bmi_icc_headcirc_mean_home <- update(age_accel_pheno_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-age_accel_pheno_bmi_icc_total_skin_mean_home <- update(age_accel_pheno_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+age_accel_pheno_pregresid_bmi_icc_total_skin_mean_home <- update(age_accel_pheno_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(age_accel_pheno_bmi_icc_weight_home, age_accel_pheno_bmi_icc_length_home, age_accel_pheno_bmi_icc_armcircm_home, age_accel_pheno_bmi_icc_abdom_mean_home, age_accel_pheno_bmi_icc_headcirc_mean_home, age_accel_pheno_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(age_accel_pheno_pregresid_bmi_icc_weight_home, age_accel_pheno_pregresid_bmi_icc_length_home, age_accel_pheno_pregresid_bmi_icc_armcircm_home, age_accel_pheno_pregresid_bmi_icc_abdom_mean_home, age_accel_pheno_pregresid_bmi_icc_headcirc_mean_home, age_accel_pheno_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S5_pheno_other.doc"))
 ```
 
 <br><br>
@@ -170,19 +170,19 @@ sjPlot::tab_model(age_accel_pheno_bmi_icc_weight_home, age_accel_pheno_bmi_icc_l
 ## Pre-BMI adjustments, grimage
 ```{r}
 ## Pre-BMI adjustments, grimage
-age_accel_grim_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+age_accel_grim_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ age_accel_grim_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-age_accel_grim_bmi_icc_length_home <- update(age_accel_grim_bmi_icc_weight_home, icc_length_home ~ .)
+age_accel_grim_pregresid_bmi_icc_length_home <- update(age_accel_grim_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-age_accel_grim_bmi_icc_armcircm_home <- update(age_accel_grim_bmi_icc_weight_home, icc_armcircm_home ~ .)
+age_accel_grim_pregresid_bmi_icc_armcircm_home <- update(age_accel_grim_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-age_accel_grim_bmi_icc_abdom_mean_home <- update(age_accel_grim_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+age_accel_grim_pregresid_bmi_icc_abdom_mean_home <- update(age_accel_grim_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-age_accel_grim_bmi_icc_headcirc_mean_home <- update(age_accel_grim_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+age_accel_grim_pregresid_bmi_icc_headcirc_mean_home <- update(age_accel_grim_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-age_accel_grim_bmi_icc_total_skin_mean_home <- update(age_accel_grim_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+age_accel_grim_pregresid_bmi_icc_total_skin_mean_home <- update(age_accel_grim_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(age_accel_grim_bmi_icc_weight_home, age_accel_grim_bmi_icc_length_home, age_accel_grim_bmi_icc_armcircm_home, age_accel_grim_bmi_icc_abdom_mean_home, age_accel_grim_bmi_icc_headcirc_mean_home, age_accel_grim_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(age_accel_grim_pregresid_bmi_icc_weight_home, age_accel_grim_pregresid_bmi_icc_length_home, age_accel_grim_pregresid_bmi_icc_armcircm_home, age_accel_grim_pregresid_bmi_icc_abdom_mean_home, age_accel_grim_pregresid_bmi_icc_headcirc_mean_home, age_accel_grim_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S6_grim_other.doc"))
 
 ```
 
@@ -193,19 +193,19 @@ sjPlot::tab_model(age_accel_grim_bmi_icc_weight_home, age_accel_grim_bmi_icc_len
 No Pre-BMI adjustments, dn_am_adm_adj_age
 ```{r, eval = FALSE}
 ## No Pre-BMI adjustments, dn_am_adm_adj_age
-dn_am_adm_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_adm_adj_age_no_bmi_icc_length_home <- update(dn_am_adm_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_adm_adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_adm_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_adm_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_adm_adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_adm_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_adm_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_adm_adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_adm_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_adm_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_adm_adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_adm_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_adm_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_adm_adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_adm_adj_age_no_bmi_icc_weight_home, dn_am_adm_adj_age_no_bmi_icc_length_home, dn_am_adm_adj_age_no_bmi_icc_armcircm_home, dn_am_adm_adj_age_no_bmi_icc_abdom_mean_home, dn_am_adm_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_adm_adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_adm_adj_age_pregresid_no_bmi_icc_weight_home, dn_am_adm_adj_age_pregresid_no_bmi_icc_length_home, dn_am_adm_adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_adm_adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_adm_adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_adm_adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 ```
 
 <br><br>
@@ -216,19 +216,19 @@ sjPlot::tab_model(dn_am_adm_adj_age_no_bmi_icc_weight_home, dn_am_adm_adj_age_no
 
 ```{r}
 ## Pre-BMI adjustments, dn_am_adm_adj_age
-dn_am_adm_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_adm_adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_adm_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_adm_adj_age_bmi_icc_length_home <- update(dn_am_adm_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_adm_adj_age_pregresid_bmi_icc_length_home <- update(dn_am_adm_adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_adm_adj_age_bmi_icc_armcircm_home <- update(dn_am_adm_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_adm_adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_adm_adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_adm_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_adm_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_adm_adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_adm_adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_adm_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_adm_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_adm_adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_adm_adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_adm_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_adm_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_adm_adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_adm_adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_adm_adj_age_bmi_icc_weight_home, dn_am_adm_adj_age_bmi_icc_length_home, dn_am_adm_adj_age_bmi_icc_armcircm_home, dn_am_adm_adj_age_bmi_icc_abdom_mean_home, dn_am_adm_adj_age_bmi_icc_headcirc_mean_home, dn_am_adm_adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_adm_adj_age_pregresid_bmi_icc_weight_home, dn_am_adm_adj_age_pregresid_bmi_icc_length_home, dn_am_adm_adj_age_pregresid_bmi_icc_armcircm_home, dn_am_adm_adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_adm_adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_adm_adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S7_adm_other.doc"))
 ```
 
 <br><br>
@@ -238,19 +238,19 @@ sjPlot::tab_model(dn_am_adm_adj_age_bmi_icc_weight_home, dn_am_adm_adj_age_bmi_i
 
 ```{r, eval = FALSE}
 ## No Pre-BMI adjustments, dn_am_b2m_adj_age
-dn_am_b2m_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_b2m_adj_age_no_bmi_icc_length_home <- update(dn_am_b2m_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_b2m_adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_b2m_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_b2m_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_b2m_adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_b2m_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_b2m_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_b2m_adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_b2m_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_b2m_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_b2m_adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_b2m_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_b2m_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_b2m_adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_b2m_adj_age_no_bmi_icc_weight_home, dn_am_b2m_adj_age_no_bmi_icc_length_home, dn_am_b2m_adj_age_no_bmi_icc_armcircm_home, dn_am_b2m_adj_age_no_bmi_icc_abdom_mean_home, dn_am_b2m_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_b2m_adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_b2m_adj_age_pregresid_no_bmi_icc_weight_home, dn_am_b2m_adj_age_pregresid_no_bmi_icc_length_home, dn_am_b2m_adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_b2m_adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_b2m_adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_b2m_adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```
 
@@ -261,19 +261,19 @@ sjPlot::tab_model(dn_am_b2m_adj_age_no_bmi_icc_weight_home, dn_am_b2m_adj_age_no
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_b2m_adj_age
-dn_am_b2m_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_b2m_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_b2m_adj_age_bmi_icc_length_home <- update(dn_am_b2m_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_b2m_adj_age_pregresid_bmi_icc_length_home <- update(dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_b2m_adj_age_bmi_icc_armcircm_home <- update(dn_am_b2m_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_b2m_adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_b2m_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_b2m_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_b2m_adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_b2m_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_b2m_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_b2m_adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_b2m_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_b2m_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_b2m_adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_b2m_adj_age_bmi_icc_weight_home, dn_am_b2m_adj_age_bmi_icc_length_home, dn_am_b2m_adj_age_bmi_icc_armcircm_home, dn_am_b2m_adj_age_bmi_icc_abdom_mean_home, dn_am_b2m_adj_age_bmi_icc_headcirc_mean_home, dn_am_b2m_adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_b2m_adj_age_pregresid_bmi_icc_weight_home, dn_am_b2m_adj_age_pregresid_bmi_icc_length_home, dn_am_b2m_adj_age_pregresid_bmi_icc_armcircm_home, dn_am_b2m_adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_b2m_adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_b2m_adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S8_b2m_other.doc"))
 
 ```   
 
@@ -284,19 +284,19 @@ sjPlot::tab_model(dn_am_b2m_adj_age_bmi_icc_weight_home, dn_am_b2m_adj_age_bmi_i
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_cystatin_c_adj_age
-dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_cystatin_c_adj_age_no_bmi_icc_length_home <- update(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_cystatin_c_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_cystatin_c_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_cystatin_c_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_cystatin_c_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, dn_am_cystatin_c_adj_age_no_bmi_icc_length_home, dn_am_cystatin_c_adj_age_no_bmi_icc_armcircm_home, dn_am_cystatin_c_adj_age_no_bmi_icc_abdom_mean_home, dn_am_cystatin_c_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_cystatin_c_adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_weight_home, dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_length_home, dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_cystatin_c_adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```
 
@@ -307,42 +307,42 @@ sjPlot::tab_model(dn_am_cystatin_c_adj_age_no_bmi_icc_weight_home, dn_am_cystati
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_cystatin_c_adj_age
-dn_am_cystatin_c_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_cystatin_c_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_cystatin_c_adj_age_bmi_icc_length_home <- update(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_bmi_icc_length_home <- update(dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_cystatin_c_adj_age_bmi_icc_armcircm_home <- update(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_cystatin_c_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_cystatin_c_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_cystatin_c_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_cystatin_c_adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_cystatin_c_adj_age_bmi_icc_weight_home, dn_am_cystatin_c_adj_age_bmi_icc_length_home, dn_am_cystatin_c_adj_age_bmi_icc_armcircm_home, dn_am_cystatin_c_adj_age_bmi_icc_abdom_mean_home, dn_am_cystatin_c_adj_age_bmi_icc_headcirc_mean_home, dn_am_cystatin_c_adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_cystatin_c_adj_age_pregresid_bmi_icc_weight_home, dn_am_cystatin_c_adj_age_pregresid_bmi_icc_length_home, dn_am_cystatin_c_adj_age_pregresid_bmi_icc_armcircm_home, dn_am_cystatin_c_adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_cystatin_c_adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_cystatin_c_adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S9_cystatin_other.doc"))
 
 ```
 
 <br><br>
 
- No Pre-BMI adjustments, dn_am_gdf15adj_age
+ No Pre-BMI adjustments, dn_am_gdf15adj_age_pregresid
 <br>
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_gdf15adj_age
-dn_am_gdf15adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_gdf15adj_age_no_bmi_icc_length_home <- update(dn_am_gdf15adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_gdf15adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_gdf15adj_age_no_bmi_icc_armcircm_home <- update(dn_am_gdf15adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_gdf15adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_gdf15adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_gdf15adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_gdf15adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_gdf15adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_gdf15adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_gdf15adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_gdf15adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_gdf15adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_gdf15adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_gdf15adj_age_no_bmi_icc_weight_home, dn_am_gdf15adj_age_no_bmi_icc_length_home, dn_am_gdf15adj_age_no_bmi_icc_armcircm_home, dn_am_gdf15adj_age_no_bmi_icc_abdom_mean_home, dn_am_gdf15adj_age_no_bmi_icc_headcirc_mean_home, dn_am_gdf15adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_gdf15adj_age_pregresid_no_bmi_icc_weight_home, dn_am_gdf15adj_age_pregresid_no_bmi_icc_length_home, dn_am_gdf15adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_gdf15adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_gdf15adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_gdf15adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```  
 
@@ -353,42 +353,42 @@ sjPlot::tab_model(dn_am_gdf15adj_age_no_bmi_icc_weight_home, dn_am_gdf15adj_age_
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_gdf15adj_age
-dn_am_gdf15adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_gdf15adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_gdf15adj_age_bmi_icc_length_home <- update(dn_am_gdf15adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_gdf15adj_age_pregresid_bmi_icc_length_home <- update(dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_gdf15adj_age_bmi_icc_armcircm_home <- update(dn_am_gdf15adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_gdf15adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_gdf15adj_age_bmi_icc_abdom_mean_home <- update(dn_am_gdf15adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_gdf15adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_gdf15adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_gdf15adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_gdf15adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_gdf15adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_gdf15adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_gdf15adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_gdf15adj_age_bmi_icc_weight_home, dn_am_gdf15adj_age_bmi_icc_length_home, dn_am_gdf15adj_age_bmi_icc_armcircm_home, dn_am_gdf15adj_age_bmi_icc_abdom_mean_home, dn_am_gdf15adj_age_bmi_icc_headcirc_mean_home, dn_am_gdf15adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_gdf15adj_age_pregresid_bmi_icc_weight_home, dn_am_gdf15adj_age_pregresid_bmi_icc_length_home, dn_am_gdf15adj_age_pregresid_bmi_icc_armcircm_home, dn_am_gdf15adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_gdf15adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_gdf15adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S10_gdf15_other.doc"))
 
 ```   
 
 <br><br>
 
-No Pre-BMI adjustments, dn_am_leptin_adj_age
+No Pre-BMI adjustments, dn_am_leptin_adj_age_pregresid
 <br>
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_leptin_adj_age
-dn_am_leptin_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_leptin_adj_age_no_bmi_icc_length_home <- update(dn_am_leptin_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_leptin_adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_leptin_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_leptin_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_leptin_adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_leptin_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_leptin_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_leptin_adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_leptin_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_leptin_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_leptin_adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_leptin_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_leptin_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_leptin_adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_leptin_adj_age_no_bmi_icc_weight_home, dn_am_leptin_adj_age_no_bmi_icc_length_home, dn_am_leptin_adj_age_no_bmi_icc_armcircm_home, dn_am_leptin_adj_age_no_bmi_icc_abdom_mean_home, dn_am_leptin_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_leptin_adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_leptin_adj_age_pregresid_no_bmi_icc_weight_home, dn_am_leptin_adj_age_pregresid_no_bmi_icc_length_home, dn_am_leptin_adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_leptin_adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_leptin_adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_leptin_adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```   
 
@@ -399,19 +399,19 @@ sjPlot::tab_model(dn_am_leptin_adj_age_no_bmi_icc_weight_home, dn_am_leptin_adj_
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_leptin_adj_age
-dn_am_leptin_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_leptin_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_leptin_adj_age_bmi_icc_length_home <- update(dn_am_leptin_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_leptin_adj_age_pregresid_bmi_icc_length_home <- update(dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_leptin_adj_age_bmi_icc_armcircm_home <- update(dn_am_leptin_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_leptin_adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_leptin_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_leptin_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_leptin_adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_leptin_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_leptin_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_leptin_adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_leptin_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_leptin_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_leptin_adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_leptin_adj_age_bmi_icc_weight_home, dn_am_leptin_adj_age_bmi_icc_length_home, dn_am_leptin_adj_age_bmi_icc_armcircm_home, dn_am_leptin_adj_age_bmi_icc_abdom_mean_home, dn_am_leptin_adj_age_bmi_icc_headcirc_mean_home, dn_am_leptin_adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_leptin_adj_age_pregresid_bmi_icc_weight_home, dn_am_leptin_adj_age_pregresid_bmi_icc_length_home, dn_am_leptin_adj_age_pregresid_bmi_icc_armcircm_home, dn_am_leptin_adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_leptin_adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_leptin_adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S11_leptin_other.doc"))
 
 ```   
 
@@ -422,42 +422,42 @@ sjPlot::tab_model(dn_am_leptin_adj_age_bmi_icc_weight_home, dn_am_leptin_adj_age
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_packyrs_adj_age
-dn_am_packyrs_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_packyrs_adj_age_no_bmi_icc_length_home <- update(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_packyrs_adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_packyrs_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_packyrs_adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_packyrs_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_packyrs_adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_packyrs_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_packyrs_adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_packyrs_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_packyrs_adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_packyrs_adj_age_no_bmi_icc_weight_home, dn_am_packyrs_adj_age_no_bmi_icc_length_home, dn_am_packyrs_adj_age_no_bmi_icc_armcircm_home, dn_am_packyrs_adj_age_no_bmi_icc_abdom_mean_home, dn_am_packyrs_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_packyrs_adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_packyrs_adj_age_pregresid_no_bmi_icc_weight_home, dn_am_packyrs_adj_age_pregresid_no_bmi_icc_length_home, dn_am_packyrs_adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_packyrs_adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_packyrs_adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_packyrs_adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```   
 
 <br><br>
 
-## Pre-BMI adjustments, dn_am_packyrs_adj_age
+## Pre-BMI adjustments, dn_am_packyrs_adj_age_pregresid
 <br>
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_packyrs_adj_age
-dn_am_packyrs_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_packyrs_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_packyrs_adj_age_bmi_icc_length_home <- update(dn_am_packyrs_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_packyrs_adj_age_pregresid_bmi_icc_length_home <- update(dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_packyrs_adj_age_bmi_icc_armcircm_home <- update(dn_am_packyrs_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_packyrs_adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_packyrs_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_packyrs_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_packyrs_adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_packyrs_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_packyrs_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_packyrs_adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_packyrs_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_packyrs_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_packyrs_adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_packyrs_adj_age_bmi_icc_weight_home, dn_am_packyrs_adj_age_bmi_icc_length_home, dn_am_packyrs_adj_age_bmi_icc_armcircm_home, dn_am_packyrs_adj_age_bmi_icc_abdom_mean_home, dn_am_packyrs_adj_age_bmi_icc_headcirc_mean_home, dn_am_packyrs_adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_packyrs_adj_age_pregresid_bmi_icc_weight_home, dn_am_packyrs_adj_age_pregresid_bmi_icc_length_home, dn_am_packyrs_adj_age_pregresid_bmi_icc_armcircm_home, dn_am_packyrs_adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_packyrs_adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_packyrs_adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S12_packyears_other.doc"))
 
 ```   
 
@@ -468,19 +468,19 @@ No Pre-BMI adjustments, dn_am_pai1adj_age
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_pai1adj_age
-dn_am_pai1adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_pai1adj_age_no_bmi_icc_length_home <- update(dn_am_pai1adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_pai1adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_pai1adj_age_no_bmi_icc_armcircm_home <- update(dn_am_pai1adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_pai1adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_pai1adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_pai1adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_pai1adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_pai1adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_pai1adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_pai1adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_pai1adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_pai1adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_pai1adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_pai1adj_age_no_bmi_icc_weight_home, dn_am_pai1adj_age_no_bmi_icc_length_home, dn_am_pai1adj_age_no_bmi_icc_armcircm_home, dn_am_pai1adj_age_no_bmi_icc_abdom_mean_home, dn_am_pai1adj_age_no_bmi_icc_headcirc_mean_home, dn_am_pai1adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_pai1adj_age_pregresid_no_bmi_icc_weight_home, dn_am_pai1adj_age_pregresid_no_bmi_icc_length_home, dn_am_pai1adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_pai1adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_pai1adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_pai1adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```   
 
@@ -491,19 +491,19 @@ sjPlot::tab_model(dn_am_pai1adj_age_no_bmi_icc_weight_home, dn_am_pai1adj_age_no
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_pai1adj_age
-dn_am_pai1adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_pai1adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_pai1adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_pai1adj_age_bmi_icc_length_home <- update(dn_am_pai1adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_pai1adj_age_pregresid_bmi_icc_length_home <- update(dn_am_pai1adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_pai1adj_age_bmi_icc_armcircm_home <- update(dn_am_pai1adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_pai1adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_pai1adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_pai1adj_age_bmi_icc_abdom_mean_home <- update(dn_am_pai1adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_pai1adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_pai1adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_pai1adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_pai1adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_pai1adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_pai1adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_pai1adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_pai1adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_pai1adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_pai1adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_pai1adj_age_bmi_icc_weight_home, dn_am_pai1adj_age_bmi_icc_length_home, dn_am_pai1adj_age_bmi_icc_armcircm_home, dn_am_pai1adj_age_bmi_icc_abdom_mean_home, dn_am_pai1adj_age_bmi_icc_headcirc_mean_home, dn_am_pai1adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_pai1adj_age_pregresid_bmi_icc_weight_home, dn_am_pai1adj_age_pregresid_bmi_icc_length_home, dn_am_pai1adj_age_pregresid_bmi_icc_armcircm_home, dn_am_pai1adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_pai1adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_pai1adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S13_pai1_other.doc"))
 
 ```   
 
@@ -514,19 +514,19 @@ sjPlot::tab_model(dn_am_pai1adj_age_bmi_icc_weight_home, dn_am_pai1adj_age_bmi_i
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_timp1adj_age
-dn_am_timp1adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_timp1adj_age_no_bmi_icc_length_home <- update(dn_am_timp1adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_timp1adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_timp1adj_age_no_bmi_icc_armcircm_home <- update(dn_am_timp1adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_timp1adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_timp1adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_timp1adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_timp1adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_timp1adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_timp1adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_timp1adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_timp1adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_timp1adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_timp1adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_timp1adj_age_no_bmi_icc_weight_home, dn_am_timp1adj_age_no_bmi_icc_length_home, dn_am_timp1adj_age_no_bmi_icc_armcircm_home, dn_am_timp1adj_age_no_bmi_icc_abdom_mean_home, dn_am_timp1adj_age_no_bmi_icc_headcirc_mean_home, dn_am_timp1adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_timp1adj_age_pregresid_no_bmi_icc_weight_home, dn_am_timp1adj_age_pregresid_no_bmi_icc_length_home, dn_am_timp1adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_timp1adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_timp1adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_timp1adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```   
 
@@ -537,19 +537,19 @@ sjPlot::tab_model(dn_am_timp1adj_age_no_bmi_icc_weight_home, dn_am_timp1adj_age_
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_timp1adj_age
-dn_am_timp1adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_timp1adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_timp1adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_timp1adj_age_bmi_icc_length_home <- update(dn_am_timp1adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_timp1adj_age_pregresid_bmi_icc_length_home <- update(dn_am_timp1adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_timp1adj_age_bmi_icc_armcircm_home <- update(dn_am_timp1adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_timp1adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_timp1adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_timp1adj_age_bmi_icc_abdom_mean_home <- update(dn_am_timp1adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_timp1adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_timp1adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_timp1adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_timp1adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_timp1adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_timp1adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_timp1adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_timp1adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_timp1adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_timp1adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_timp1adj_age_bmi_icc_weight_home, dn_am_timp1adj_age_bmi_icc_length_home, dn_am_timp1adj_age_bmi_icc_armcircm_home, dn_am_timp1adj_age_bmi_icc_abdom_mean_home, dn_am_timp1adj_age_bmi_icc_headcirc_mean_home, dn_am_timp1adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_timp1adj_age_pregresid_bmi_icc_weight_home, dn_am_timp1adj_age_pregresid_bmi_icc_length_home, dn_am_timp1adj_age_pregresid_bmi_icc_armcircm_home, dn_am_timp1adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_timp1adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_timp1adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S14_timp1_other.doc"))
 
 ```
 
@@ -560,19 +560,19 @@ sjPlot::tab_model(dn_am_timp1adj_age_bmi_icc_weight_home, dn_am_timp1adj_age_bmi
 
 ```{r, eval = FALSE} 
 ## No Pre-BMI adjustments, dn_am_tl_adj_age
-dn_am_tl_adj_age_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + gestage + measurement_age + iccsex + ses_pc1+ days_blood_preg, data = combined_data)
+dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1,data = combined_data)
 
-dn_am_tl_adj_age_no_bmi_icc_length_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_tl_adj_age_pregresid_no_bmi_icc_length_home <- update(dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_tl_adj_age_no_bmi_icc_armcircm_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_tl_adj_age_pregresid_no_bmi_icc_armcircm_home <- update(dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_tl_adj_age_no_bmi_icc_abdom_mean_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_tl_adj_age_pregresid_no_bmi_icc_abdom_mean_home <- update(dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_tl_adj_age_no_bmi_icc_headcirc_mean_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_tl_adj_age_pregresid_no_bmi_icc_headcirc_mean_home <- update(dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_tl_adj_age_no_bmi_icc_total_skin_mean_home <- update(dn_am_tl_adj_age_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_tl_adj_age_pregresid_no_bmi_icc_total_skin_mean_home <- update(dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_tl_adj_age_no_bmi_icc_weight_home, dn_am_tl_adj_age_no_bmi_icc_length_home, dn_am_tl_adj_age_no_bmi_icc_armcircm_home, dn_am_tl_adj_age_no_bmi_icc_abdom_mean_home, dn_am_tl_adj_age_no_bmi_icc_headcirc_mean_home, dn_am_tl_adj_age_no_bmi_icc_total_skin_mean_home)
+sjPlot::tab_model(dn_am_tl_adj_age_pregresid_no_bmi_icc_weight_home, dn_am_tl_adj_age_pregresid_no_bmi_icc_length_home, dn_am_tl_adj_age_pregresid_no_bmi_icc_armcircm_home, dn_am_tl_adj_age_pregresid_no_bmi_icc_abdom_mean_home, dn_am_tl_adj_age_pregresid_no_bmi_icc_headcirc_mean_home, dn_am_tl_adj_age_pregresid_no_bmi_icc_total_skin_mean_home)
 
 ```   
 
@@ -583,18 +583,122 @@ sjPlot::tab_model(dn_am_tl_adj_age_no_bmi_icc_weight_home, dn_am_tl_adj_age_no_b
 
 ```{r} 
 ## Pre-BMI adjustments, dn_am_tl_adj_age
-dn_am_tl_adj_age_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age + gestage + measurement_age + iccsex + ses_pc1 + prebmiz+ days_blood_preg, data = combined_data)
+dn_am_tl_adj_age_pregresid_bmi_icc_weight_home <- lm(icc_weight_home ~ dn_am_tl_adj_age_pregresid + gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
 
-dn_am_tl_adj_age_bmi_icc_length_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_length_home ~ .)
+dn_am_tl_adj_age_pregresid_bmi_icc_length_home <- update(dn_am_tl_adj_age_pregresid_bmi_icc_weight_home, icc_length_home ~ .)
 
-dn_am_tl_adj_age_bmi_icc_armcircm_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_armcircm_home ~ .)
+dn_am_tl_adj_age_pregresid_bmi_icc_armcircm_home <- update(dn_am_tl_adj_age_pregresid_bmi_icc_weight_home, icc_armcircm_home ~ .)
 
-dn_am_tl_adj_age_bmi_icc_abdom_mean_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
+dn_am_tl_adj_age_pregresid_bmi_icc_abdom_mean_home <- update(dn_am_tl_adj_age_pregresid_bmi_icc_weight_home, icc_abdom_mean_home ~ .)
 
-dn_am_tl_adj_age_bmi_icc_headcirc_mean_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
+dn_am_tl_adj_age_pregresid_bmi_icc_headcirc_mean_home <- update(dn_am_tl_adj_age_pregresid_bmi_icc_weight_home, icc_headcirc_mean_home ~ .)
 
-dn_am_tl_adj_age_bmi_icc_total_skin_mean_home <- update(dn_am_tl_adj_age_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
+dn_am_tl_adj_age_pregresid_bmi_icc_total_skin_mean_home <- update(dn_am_tl_adj_age_pregresid_bmi_icc_weight_home, icc_total_skin_mean_home ~ .)
 
-sjPlot::tab_model(dn_am_tl_adj_age_bmi_icc_weight_home, dn_am_tl_adj_age_bmi_icc_length_home, dn_am_tl_adj_age_bmi_icc_armcircm_home, dn_am_tl_adj_age_bmi_icc_abdom_mean_home, dn_am_tl_adj_age_bmi_icc_headcirc_mean_home, dn_am_tl_adj_age_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+sjPlot::tab_model(dn_am_tl_adj_age_pregresid_bmi_icc_weight_home, dn_am_tl_adj_age_pregresid_bmi_icc_length_home, dn_am_tl_adj_age_pregresid_bmi_icc_armcircm_home, dn_am_tl_adj_age_pregresid_bmi_icc_abdom_mean_home, dn_am_tl_adj_age_pregresid_bmi_icc_headcirc_mean_home, dn_am_tl_adj_age_pregresid_bmi_icc_total_skin_mean_home,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S15_tl_other.doc"))
 
 ```
+
+# Figures
+
+## Leptin and head circumference
+
+### Get residuals
+```{r}
+# Get residuals
+# 
+length_basic <- lm(icc_length_home ~ gestage + measurement_age + iccsex + ses_pc1 + prebmiz,data = combined_data)
+
+headcirc_basic <-update(length_basic, icc_headcirc_mean_home ~ . )
+
+weight_basic <-update(length_basic, icc_weight_home ~ . )
+
+length_resids <-broom::augment(length_basic)$.resid
+headcirc_resids <-broom::augment(headcirc_basic)$.resid
+weight_resids <-broom::augment(weight_basic)$.resid
+
+
+```
+
+
+### Make figures
+```{r, fig.height = 8, fig.width = 9.5, eval = FALSE}
+all_but_leptin_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz ,data = combined_data)
+
+ga_resids <-broom::augment(all_but_leptin_gest_age_no_meas)$.resid
+
+
+
+leptin_plot <-ggplot(data = combined_data, mapping = aes(x = dn_am_leptin_adj_age_pregresid, y = ga_resids)) +
+  geom_point(color = 'firebrick', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmLeptin EEA", y = "Postnatal Measured Weight (residuals)")+
+  theme_pubr()+
+  annotate("text", x = -2800, y = -50, label=expression(beta *  "= -0.15,  p-value = 0.009")); leptin_plot
+
+
+adm_weight_plot <-ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age_pregresid, y = weight_resids)) +
+  geom_point(color = 'steelblue', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmADM EEA", y = "Postnatal Measured Weight (residuals)")+
+  theme_pubr()+
+  annotate("text", x = -28, y = -1.3, label=expression(beta *  "= 0.09,  p-value = 0.102")); adm_weight_plot
+
+adm_length_plot <-ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age_pregresid, y = length_resids)) +
+  geom_point(color = 'steelblue', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmADM EEA", y = "Postnatal Length (residuals)")+
+  theme_pubr()+
+    annotate("text", x = -28, y = -10, label=expression(beta *  "= 0.14,  p-value = 0.013")); adm_length_plot
+
+
+adm_headcirc_plot <-ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age_pregresid, y = headcirc_resids)) +
+  geom_point(color = 'steelblue', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmADM EEA", y = "Postnatal Head Circumference (residuals)")+
+  theme_pubr()+
+  annotate("text", x = -28, y = -4.5, label=expression(beta *  "= 0.09,  p-value = 0.086")); adm_headcirc_plot
+
+
+ggarrange(leptin_plot, adm_length_plot, adm_headcirc_plot, adm_weight_plot,  
+          labels = c("A", "B", "C", "D"), 
+          ncol = 2, nrow = 2)
+
+
+```
+
+### Get Grim and TL residuals
+```{r, fig.height = 5, fig.width = 13, eval = FALSE}
+# Get residuals
+length_resids <-broom::augment(length_basic)$.resid
+headcirc_resids <-broom::augment(headcirc_basic)$.resid
+TL_headcirc_plot <-broom::augment(headcirc_basic)$.resid
+
+grim_length_plot <-ggplot(data = combined_data, mapping = aes(x = age_accel_grim_pregresid, y = length_resids)) +
+  geom_point(color = 'purple', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmGrim EEA", y = "Postnatal Length (residuals)")+
+  theme_pubr()+
+    annotate("text", x = -3.5, y = -10, label=expression(beta *  "= 0.14,  p-value = 0.013")); grim_length_plot
+
+
+grim_headcirc_plot <-ggplot(data = combined_data, mapping = aes(x = age_accel_grim_pregresid, y = headcirc_resids)) +
+  geom_point(color = 'purple', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmGrim EEA", y = "Postnatal Head Circumference (residuals)")+
+  theme_pubr()+
+  annotate("text", x = -3.5, y = -4.5, label=expression(beta *  "= 0.09,  p-value = 0.086")); grim_headcirc_plot
+
+
+TL_headcirc_plot <-ggplot(data = combined_data, mapping = aes(x = dn_am_tl_adj_age_pregresid, y = headcirc_resids)) +
+  geom_point(color = 'darkgreen', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmTL EEA", y = "Postnatal Head Circumference (residuals)")+
+  theme_pubr()+
+  annotate("text", x = -0.125, y = -4.5, label=expression(beta *  "= 0.09,  p-value = 0.086")); TL_headcirc_plot
+
+ggarrange(grim_length_plot, grim_headcirc_plot, TL_headcirc_plot,  
+          labels = c("A", "B", "C"), 
+          ncol = 3, nrow = 1)
+```
+

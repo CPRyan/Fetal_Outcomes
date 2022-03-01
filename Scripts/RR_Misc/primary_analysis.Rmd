@@ -1,6 +1,6 @@
 ---
 title: "Primary Analysis"
-author: "Raviraj Rege"
+author: "Raviraj Rege and CPR"
 date: "9/14/2021"
 output: html_document
 ---
@@ -29,121 +29,230 @@ combined_data <- read_csv(here::here("Data/combined_final_data.csv")) #%>%
 ## Gestational Age Analyses (without Measurement Age)
 
 ```{r}
-ieaa_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + ieaa + days_blood_preg, data = combined_data)
+ieaa_pregresid_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + ieaa_pregresid ,data = combined_data)
 
-eeaa_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + eeaa + days_blood_preg, data = combined_data)
+eeaa_pregresid_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + eeaa_pregresid ,data = combined_data)
 
-phenoage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_pheno + days_blood_preg, data = combined_data)
+pheno_pregresidage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_pheno_pregresid ,data = combined_data)
 
-grimage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_grim + days_blood_preg, data = combined_data)
+grim_pregresidage_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_accel_grim_pregresid ,data = combined_data)
 
-adm_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age + days_blood_preg, data = combined_data)
+adm_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age_pregresid ,data = combined_data)
 
-b2m_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age + days_blood_preg, data = combined_data)
+b2m_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age_pregresid ,data = combined_data)
 
-cystatin_c_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age + days_blood_preg, data = combined_data)
+cystatin_c_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age_pregresid ,data = combined_data)
 
-gdf15_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age + days_blood_preg, data = combined_data)
+gdf15_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age_pregresid ,data = combined_data)
 
-leptin_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age + days_blood_preg, data = combined_data)
+leptin_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age_pregresid ,data = combined_data)
 
-pack_years_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age + days_blood_preg, data = combined_data)
+pack_years_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age_pregresid ,data = combined_data)
 
-pai1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age + days_blood_preg, data = combined_data)
+pai1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age_pregresid ,data = combined_data)
 
-timp1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age + days_blood_preg, data = combined_data)
+timp1_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age_pregresid ,data = combined_data)
 
-tl_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age + days_blood_preg, data = combined_data)
+tl_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age_pregresid ,data = combined_data)
 
-sjPlot::tab_model(ieaa_gest_age_no_meas, eeaa_gest_age_no_meas, phenoage_gest_age_no_meas, grimage_gest_age_no_meas, adm_gest_age_no_meas, b2m_gest_age_no_meas, cystatin_c_gest_age_no_meas, gdf15_gest_age_no_meas, leptin_gest_age_no_meas, pack_years_gest_age_no_meas, pai1_gest_age_no_meas, timp1_gest_age_no_meas, tl_gest_age_no_meas, show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+horvath_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + age_acceleration_residual_pregresid ,data = combined_data)
+
+cell_senescence_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz + cd8p_cd28n_cd45r_an_age_pregresid ,data = combined_data)
+
+
+
+sjPlot::tab_model(horvath_gest_age_no_meas, cell_senescence_gest_age_no_meas, ieaa_pregresid_gest_age_no_meas, eeaa_pregresid_gest_age_no_meas, pheno_pregresidage_gest_age_no_meas, grim_pregresidage_gest_age_no_meas, adm_gest_age_no_meas, b2m_gest_age_no_meas, cystatin_c_gest_age_no_meas, gdf15_gest_age_no_meas, leptin_gest_age_no_meas, pack_years_gest_age_no_meas, pai1_gest_age_no_meas, timp1_gest_age_no_meas, tl_gest_age_no_meas,  show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S1_gestage.doc"))
 
 ```
 
 ## Measurement Weight Analyses
 
 ```{r}
-ieaa_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + ieaa + days_blood_preg, data = combined_data)
+ieaa_pregresid_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + ieaa_pregresid,data = combined_data)
 
-eeaa_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + eeaa + days_blood_preg, data = combined_data)
+eeaa_pregresid_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +eeaa_pregresid ,data = combined_data)
 
-phenoage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + age_accel_pheno + days_blood_preg, data = combined_data)
+pheno_pregresidage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz +gestage + age_accel_pheno_pregresid ,data = combined_data)
 
-grimage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + age_accel_grim + days_blood_preg, data = combined_data)
+grim_pregresidage_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + age_accel_grim_pregresid ,data = combined_data)
 
-adm_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_adm_adj_age + days_blood_preg, data = combined_data)
+adm_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +dn_am_adm_adj_age_pregresid ,data = combined_data)
 
-b2m_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_b2m_adj_age + days_blood_preg, data = combined_data)
+b2m_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + dn_am_b2m_adj_age_pregresid ,data = combined_data)
 
-cystatin_c_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_cystatin_c_adj_age + days_blood_preg, data = combined_data)
+cystatin_c_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + dn_am_cystatin_c_adj_age_pregresid ,data = combined_data)
 
-gdf15_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_gdf15adj_age + days_blood_preg, data = combined_data)
+gdf15_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +dn_am_gdf15adj_age_pregresid ,data = combined_data)
 
-leptin_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_leptin_adj_age + days_blood_preg, data = combined_data)
+leptin_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +dn_am_leptin_adj_age_pregresid ,data = combined_data)
 
-pack_years_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_packyrs_adj_age + days_blood_preg, data = combined_data)
+pack_years_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + dn_am_packyrs_adj_age_pregresid ,data = combined_data)
 
-pai1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_pai1adj_age + days_blood_preg, data = combined_data)
+pai1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +dn_am_pai1adj_age_pregresid ,data = combined_data)
 
-timp1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_timp1adj_age + days_blood_preg, data = combined_data)
+timp1_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +dn_am_timp1adj_age_pregresid ,data = combined_data)
 
-tl_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + dn_am_tl_adj_age + days_blood_preg, data = combined_data)
+tl_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage +dn_am_tl_adj_age_pregresid ,data = combined_data)
 
-sjPlot::tab_model(ieaa_meas_weight, eeaa_meas_weight, phenoage_meas_weight, grimage_meas_weight, adm_meas_weight, b2m_meas_weight, cystatin_c_meas_weight, gdf15_meas_weight, leptin_meas_weight, pack_years_meas_weight, pai1_meas_weight, timp1_meas_weight, tl_meas_weight, show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE)
+
+horvath_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + age_acceleration_residual_pregresid ,data = combined_data)
+
+
+cell_senscence_meas_weight <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage + cd8p_cd28n_cd45r_an_age_pregresid ,data = combined_data)
+
+sjPlot::tab_model(horvath_meas_weight, cell_senscence_meas_weight, ieaa_pregresid_meas_weight, eeaa_pregresid_meas_weight, pheno_pregresidage_meas_weight, grim_pregresidage_meas_weight, adm_meas_weight, b2m_meas_weight, cystatin_c_meas_weight, gdf15_meas_weight, leptin_meas_weight, pack_years_meas_weight, pai1_meas_weight, timp1_meas_weight, tl_meas_weight, show.est = FALSE, show.se = FALSE, show.stat = TRUE, show.std = TRUE, file = here::here("Output/Figures", "Table S2_postnatal_weight.doc"))
 ```
+
+
+
+
+
+# Figures for paper
+
+## Make residuals for plots
+```{r}
+gestage_basic_model <- lm(gestage ~ iccsex + ses_pc1 + prebmiz ,data = combined_data)
+combined_data$ga_resids <-broom::augment(gestage_basic_model)$.resid
+
+weight_basic_model <- lm(icc_weight_home ~ measurement_age + iccsex + ses_pc1 + prebmiz + gestage,data = combined_data)
+combined_data$weight_resids <-broom::augment(weight_basic_model)$.resid
+
+
+combined_data_long <-combined_data %>% 
+  select(uncchdid, age_acceleration_residual_pregresid, cd8p_cd28n_cd45r_an_age_pregresid, ieaa_pregresid:dn_am_tl_adj_age_pregresid, ga_resids, weight_resids) %>% 
+  gather(., key = Clock_Type, value = Age_Acceleration_Residuals, -c(uncchdid, ga_resids, weight_resids))
+
+levels(as.factor(combined_data_long$Clock_Type))
+```
+
+
+```{r}
+new_labels <- c("age_accel_grim_pregresid" = "DNAmGrimAge Residuals", 
+                "age_accel_pheno_pregresid" = "DNAmPhenoAge Residuals", 
+                "age_acceleration_residual_pregresid" = "DNAmAge Residuals",
+                "cd8p_cd28n_cd45r_an_age_pregresid" = "Senescent T cells Residuals", 
+                "dn_am_adm_adj_age_pregresid" = "DNAmADM Residuals", 
+                "dn_am_b2m_adj_age_pregresid" = "DNAmB2M Residuals",
+                "dn_am_cystatin_c_adj_age_pregresid" = "DNAmCystatinC Residuals", 
+                "dn_am_gdf15adj_age_pregresid" = "DNAmGDF15 Residuals", 
+                "dn_am_leptin_adj_age_pregresid" = "DNAmLeptin Residuals",
+                "dn_am_packyrs_adj_age_pregresid" = "DNAmPackYears Residuals", 
+                "dn_am_pai1adj_age_pregresid" = "DNAmPAI1 Residuals", 
+                "dn_am_timp1adj_age_pregresid" = "DNAmTIMP1 Residuals", 
+                "dn_am_tl_adj_age_pregresid" = "DNAmTL Residuals", 
+                "eeaa_pregresid" = "DNAmEEAA Residuals", 
+                "ieaa_pregresid" = "DNAmIEAA Residuals")
+
+# labeller = labeller(category = new_labels)
+```
+
+
+## Figure all clocks and GA
+```{r, fig.height = 7, fig.width = 8}
+ggplot(data = combined_data_long, mapping = aes(x = Age_Acceleration_Residuals, y = ga_resids, color = Clock_Type)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm") +
+  labs(y = "Gestational Age (days)", x = "Age Acceleration Residuals")+
+  facet_wrap(~Clock_Type, scales = "free_x", nrow = 5, labeller = labeller(Clock_Type = new_labels))+
+  scale_color_viridis_d(option = 'C')+
+  theme_pubclean()+
+  theme(legend.position = "none")
+```
+
+
+## Figure all clocks and measured weight
+```{r, fig.height = 7, fig.width = 8}
+ggplot(data = combined_data_long, mapping = aes(x = Age_Acceleration_Residuals, y = weight_resids, color = Clock_Type)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm") +
+  labs(y = "Postnatal Measured Weight (g)", x = "Age Acceleration Residuals")+
+  facet_wrap(~Clock_Type, scales = "free_x", nrow = 5, labeller = labeller(Clock_Type = new_labels))+  
+  scale_color_viridis_d(option = 'C')+
+  theme_pubclean()+
+  theme(legend.position = "none")
+```
+
+
+
+
+
+
+
+
+
+## Comparison to Ross Paper - Meas Weight
+
+```{r, eval = FALSE}
+ggplot(data = combined_data, mapping = aes(x = age_accel_grim_pregresid, y = icc_weight_home)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  labs(x = "GrimAgeAccel", y = "Measured Weight (g)")
+
+ggplot(data = combined_data, mapping = aes(x = dn_am_pai1adj_age_pregresid, y = icc_weight_home)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  labs(x = "Age Adjusted DNAm PAI-1", y = "Measured Weight (g)")
+
+ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age_pregresid, y = icc_weight_home)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  labs(x = "Age Adjusted DNAm ADM", y = "Measured Weight (g)")
+
+ggplot(data = combined_data, mapping = aes(x = dn_am_cystatin_c_adj_age_pregresid, y = icc_weight_home)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "black") +
+  labs(x = "Age Adjusted DNAm Cystatin C", y = "Measured Weight (g)")
+
+```
+
 
 ## Comparison to Ross Paper - Gest Age
 
-```{r}
-ggplot(data = combined_data, mapping = aes(x = age_accel_grim, y = gestage)) +
+```{r, eval = FALSE}
+ggplot(data = combined_data, mapping = aes(x = age_accel_grim_pregresid, y = gestage)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   labs(x = "GrimAgeAccel", y = "Gestational Age (days)")
 
-ggplot(data = combined_data, mapping = aes(x = dn_am_pai1adj_age, y = gestage)) +
+ggplot(data = combined_data, mapping = aes(x = dn_am_pai1adj_age_pregresid, y = gestage)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   labs(x = "Age Adjusted DNAm PAI-1", y = "Gestational Age (days)")
 
 # This was also significant here.
-ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age, y = gestage)) +
+ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age_pregresid, y = gestage)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   labs(x = "Age Adjusted DNAm ADM", y = "Gestational Age (days)")
 
-ggplot(data = combined_data, mapping = aes(x = dn_am_cystatin_c_adj_age, y = gestage)) +
+ggplot(data = combined_data, mapping = aes(x = dn_am_cystatin_c_adj_age_pregresid, y = gestage)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   labs(x = "Age Adjusted DNAm Cystatin C", y = "Gestational Age (days)")
 
 # Adding the Leptin figure because it was significant
-ggplot(data = combined_data, mapping = aes(x = dn_am_leptin_adj_age, y = gestage)) +
+ggplot(data = combined_data, mapping = aes(x = dn_am_leptin_adj_age_pregresid, y = gestage)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "black") +
   labs(x = "Age Adjusted DNAm Leptin", y = "Gestational Age (days)")
 
 ```
 
-## Comparison to Ross Paper - Meas Weight
 
-```{r}
-ggplot(data = combined_data, mapping = aes(x = age_accel_grim, y = icc_weight_home)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
-  labs(x = "GrimAgeAccel", y = "Measured Weight (g)")
 
-ggplot(data = combined_data, mapping = aes(x = dn_am_pai1adj_age, y = icc_weight_home)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
-  labs(x = "Age Adjusted DNAm PAI-1", y = "Measured Weight (g)")
+DNAmLeptin and GA
+```{r, eval = FALSE}
+all_but_leptin_gest_age_no_meas <- lm(gestage ~ iccsex + ses_pc1 + prebmiz ,data = combined_data)
 
-ggplot(data = combined_data, mapping = aes(x = dn_am_adm_adj_age, y = icc_weight_home)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
-  labs(x = "Age Adjusted DNAm ADM", y = "Measured Weight (g)")
+ga_resids <-broom::augment(all_but_leptin_gest_age_no_meas)$.resid
 
-ggplot(data = combined_data, mapping = aes(x = dn_am_cystatin_c_adj_age, y = icc_weight_home)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, color = "black") +
-  labs(x = "Age Adjusted DNAm Cystatin C", y = "Measured Weight (g)")
 
+
+leptin_plot <-ggplot(data = combined_data, mapping = aes(x = dn_am_leptin_adj_age_pregresid, y = ga_resids)) +
+  geom_point(color = 'firebrick', alpha = 0.7) +
+  geom_smooth(method = "lm", color = "black") +
+  labs(x = "DNAmLeptin EEA", y = "Postnatal Measured Weight (residuals)")+
+  theme_pubr()+
+  annotate("text", x = -3250, y = -50, label=expression(beta *  "= -0.15,  p-value = 0.009")); leptin_plot
 ```
+
